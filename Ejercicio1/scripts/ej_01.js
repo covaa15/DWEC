@@ -1,16 +1,16 @@
 //1.Declarar variable nombre
-const nombre="Covadonga"
+const NOMBRE="Covadonga"
 
 //2.Declarar variable edad
 let edad=21
 
 //3.Declarar variable tieneMascota
-const tieneMascota=true
+const TIENEMASCOTA=true
 
 //Muestro por consola el contenido de las variables
-console.log("Nombre:", nombre)
+console.log("Nombre:", NOMBRE)
 console.log("Edad:", edad)
-console.log("Tiene mascota:", tieneMascota)
+console.log("Tiene mascota:", TIENEMASCOTA)
 
 //4.Reasigno el valor de las variables edad y tieneMascota
 edad=22
@@ -18,15 +18,15 @@ edad=22
 
 //Muestro por consola el nuevo contenido de las variables
 console.log("Nueva edad :", edad)
-console.log("Tiene Mascota:", tieneMascota)
+console.log("Tiene Mascota:", TIENEMASCOTA)
 
 //5.Muestro por consola el tipo de dato de cada variable
-console.log("Nombre: ",nombre)
-console.log("Tipo de la variable nombre: ",typeof nombre)
+console.log("Nombre: ",NOMBRE)
+console.log("Tipo de la variable nombre: ",typeof NOMBRE)
 console.log("Edad: ",edad)
 console.log("Tipo de la Variable Edad: ",typeof edad)
-console.log("¿Tengo mascota?: ",tieneMascota)
-console.log("Tipo de la varible tieneMascota: ",typeof tieneMascota)
+console.log("¿Tengo mascota?: ",TIENEMASCOTA)
+console.log("Tipo de la varible tieneMascota: ",typeof TIENEMASCOTA)
 
 //6.Crear una frase usando Template Strings
-console.log(`Hola, mi nombre es ${nombre}, tengo ${edad} años y ${tieneMascota ? "tengo" : "no tengo"} mascota.`)
+console.log(`Hola, mi nombre es ${NOMBRE}, tengo ${edad} años y ${TIENEMASCOTA ? "tengo" : "no tengo"} mascota.`)

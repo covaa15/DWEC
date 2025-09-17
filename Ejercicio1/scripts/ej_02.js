@@ -9,10 +9,10 @@ let coche={
 //2.Mostrar por pantalla usando console table
 console.table(coche)
 
-//3.Destructuring para estraer marca y modelo y mostrarlas por consola
-const {marca:marcaCoche,modelo:modeloCoche}=coche
-console.log("Marca del Coche: ",marcaCoche)
-console.log("Modelo del Coche: ",modeloCoche)
+//3.Destructuring para extraer marca y modelo y mostrarlas por consola
+const {marca:MARCACOCHE,modelo:MODELOCOCHE}=coche
+console.log("Marca del Coche: ",MARCACOCHE)
+console.log("Modelo del Coche: ",MODELOCOCHE)
 
 //4. Cambiar el valor de la variable estadisponible a true
 coche.estaDisponible=true
@@ -23,7 +23,7 @@ coche=Object.assign({color:"Azul"},coche)
 console.table(coche)
 
 //6.Eliminar año
-delete coche['anio']
+delete coche.anio
 
 //7.Mostrar la tabla por pantalla
 console.table(coche)
