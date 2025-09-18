@@ -1,26 +1,32 @@
-//1. Crear el Objeto Producto
+//1. Crea un objeto ‘producto’ con las propiedades: ‘nombre’ (string), ‘precio’ (number).
 let producto = {
     nombre:"Estuche",
     precio:20
 }
+console.log("Objeto 'producto':")
 console.table(producto)
 
-//2.Crear el Objeto Cliente
+//2. Crea un objeto ‘cliente’ con las propiedades: ‘nombreCliente’ (string), ‘esPremium’ (boolean).
 let cliente={
     nombreCliente:"Alex",
     esPremium:false
 }
+console.log("Objeto 'cliente':")
 console.table(cliente)
 
-//3.Combinar ambos objetos usando Spread Operator
+//3. Combina ambos objetos en un nuevo objeto llamado ‘pedido’ utilizando el Spread Operator (…).
 let pedido={
     ...producto,
     ...cliente
 }
-//4.Mostrar el objeto Pedido
+
+//4. Muestra el objeto ‘pedido’ en consola.
+console.log("Objeto 'pedido': ")
 console.table(pedido)
 
-//5.Crear un nuevo objeto con la propiedad nombre y combinarlo con cliente y ver que sucede
+/*5. ¿Qué sucede si las propiedades de los objetos originales tienen el mismo nombre? 
+Crea un nuevo objeto ‘producto2’ con la propiedad ‘nombre’ y combínalo con el objeto ‘cliente’ 
+para ver el resultado.*/
 
 let producto2 = {
     nombre:"Reloj"
@@ -33,7 +39,7 @@ let combinarlo ={
     ...cliente2,
     ...producto2
 }
-
+console.log("Combinación de 'producto2' con 'cliente2': ")
 console.table(combinarlo)
 
 /* Al combinar dos objetos que tienen una propiedad con el mismo nombre,
