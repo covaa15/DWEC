@@ -136,6 +136,7 @@ for (let i = 0; i < cursosDestacados.length; i++) {
     
 }
 
+
 //5. Verifica si hay algún estudiante con calificación menor a 4 en cada curso. Si lo hay, imprime:
 //`"⚠️ Atención: En el curso [nombreCurso] hay estudiantes con calificaciones muy bajas."`
 
