@@ -7,8 +7,146 @@
 
 Crea al menos 4 cursos, y cada uno con al menos 3 estudiantes.*/
 
-let cursos=[
+let cursos = [
     {
-        nombre:""
+        nombre: "Matematicas",
+        profesor: "Barbara",
+        estudiantes: [
+            {
+                nombre: "Angela",
+                calificacion: 8
+            },
+            {
+                nombre: "Manuel",
+                calificacion: 6.5
+            },
+            {
+                nombre: "Pepe",
+                calificacion: 8.9
+            }
+        ]
+
+    },
+
+    {
+        nombre: "Física",
+        profesor: "Alberto",
+        estudiantes: [
+            {
+                nombre: "Cova",
+                calificacion: 5
+            },
+            {
+                nombre: "María",
+                calificacion: 5.5
+            },
+            {
+                nombre: "Marcos",
+                calificacion: 2.9
+            }
+        ]
+    },
+
+    {
+        nombre: "Química",
+        profesor: "María Eugénia",
+        estudiantes: [
+            {
+                nombre: "Alex",
+                calificacion: 7.4
+            },
+            {
+                nombre: "Eneas",
+                calificacion: 8
+            },
+            {
+                nombre: "Mateo",
+                calificacion: 9
+            }
+        ]
+    },
+
+    {
+        nombre: "Lengua",
+        profesor: "Amalia",
+        estudiantes: [
+            {
+                nombre: "Ezequiel",
+                calificacion: 9
+            },
+            {
+                nombre: "Nerea",
+                calificacion: 0.8
+            },
+            {
+                nombre: "Laura",
+                calificacion: 10
+            }
+        ]
     }
 ]
+console.log("Array cursos:")
+console.log(cursos)
+
+/*2. Utiliza .map() para crear un nuevo array resumenCursos que contenga objetos con:
+- nombreCurso
+- promedioCalificaciones (promedio de las calificaciones de los estudiantes) */
+
+let resumenCursos = cursos.map(function (curso) {
+  
+    let suma = curso.estudiantes.reduce((acum, estudiante) => acum + estudiante.calificacion, 0);
+    let promedio = (suma / curso.estudiantes.length);
+
+    return {
+        nombreCurso: curso.nombre,
+        promedioCalificaciones: parseFloat(promedio).toFixed(2)
+    };
+});
+
+console.log("Resumen de cursos:");
+console.log(resumenCursos);
+
+//3. Utiliza .filter() para obtener un array cursosDestacados que contenga solo los cursos
+//  cuyo promedio de calificaciones sea mayor o igual a 7.
+
+let cursosDestacados=cursos.filter(function(curso){
+    let suma = curso.estudiantes.reduce((acum, estudiante) => acum + estudiante.calificacion, 0);
+    let promedio = (suma / curso.estudiantes.length);
+
+    if(promedio>=7)
+        return curso
+})
+console.log("Cursos Destacados")
+console.log(cursosDestacados)
+
+//4. Recorre los cursos destacados e imprime en consola un mensaje como:
+//`"📘 El curso [nombreCurso] tiene un promedio de [promedio] y es considerado destacado."`
+
+console.log("Cursos destacados:")
+for (let i = 0; i < cursosDestacados.length; i++) {
+    
+    let curso=cursosDestacados[i]
+    let suma=0
+    for (let j = 0; j < curso.estudiantes.length; j++) {
+        suma+=curso.estudiantes[j].calificacion
+    }
+    let promedio=suma/curso.estudiantes.length
+
+    console.log(`📘 El curso ${curso.nombre} tiene un promedio de ${promedio.toFixed(2)} y es considerado destacado`)
+    
+}
+
+//5. Verifica si hay algún estudiante con calificación menor a 4 en cada curso. Si lo hay, imprime:
+//`"⚠️ Atención: En el curso [nombreCurso] hay estudiantes con calificaciones muy bajas."`
+
+console.log("Aviso calificaciones bajas en los cursos:")
+for (let i = 0; i < cursos.length; i++) {
+    let curso=cursos[i]
+    for (let j = 0; j < curso.estudiantes.length; j++) {
+        
+        if (curso.estudiantes[j].calificacion<4)
+            console.log(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
+                  
+    }
+        
+}

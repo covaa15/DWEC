@@ -27,4 +27,7 @@ const producto = {
 
 console.log(producto)//Muestra el objeto en la consola
 console.table(producto)//Muestra el objeto en forma de tabla
-console.log( producto.nombre)//Muestra el nombre del producto
+console.log(producto.nombre)//Muestra el nombre del producto
+
+
+//Centrar el codigo: Shift + Alt + F

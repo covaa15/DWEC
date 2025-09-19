@@ -1,21 +1,21 @@
 //1. Crea un objeto ‘producto’ con las propiedades: ‘nombre’ (string), ‘precio’ (number).
 let producto = {
-    nombre:"Estuche",
-    precio:20
+    nombre: "Estuche",
+    precio: 20
 }
 console.log("Objeto 'producto':")
 console.table(producto)
 
 //2. Crea un objeto ‘cliente’ con las propiedades: ‘nombreCliente’ (string), ‘esPremium’ (boolean).
-let cliente={
-    nombreCliente:"Alex",
-    esPremium:false
+let cliente = {
+    nombreCliente: "Alex",
+    esPremium: false
 }
 console.log("Objeto 'cliente':")
 console.table(cliente)
 
 //3. Combina ambos objetos en un nuevo objeto llamado ‘pedido’ utilizando el Spread Operator (…).
-let pedido={
+let pedido = {
     ...producto,
     ...cliente
 }
@@ -29,13 +29,13 @@ Crea un nuevo objeto ‘producto2’ con la propiedad ‘nombre’ y combínalo 
 para ver el resultado.*/
 
 let producto2 = {
-    nombre:"Reloj"
+    nombre: "Reloj"
 }
-let cliente2={
-    nombre:"Eneas",
-    esPremium:false
+let cliente2 = {
+    nombre: "Eneas",
+    esPremium: false
 }
-let combinarlo ={
+let combinarlo = {
     ...cliente2,
     ...producto2
 }

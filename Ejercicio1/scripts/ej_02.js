@@ -1,10 +1,10 @@
 //1. Crea un objeto ‘coche’ con las propiedades: ‘marca’ (string),‘modelo’ (string), 
 // ‘año’ (number) y ‘estaDisponible’ (boolean).
-let coche={
-    marca:"Toyota",
-    modelo:"Corolla",
-    anio:2020,
-    estaDisponible:false
+let coche = {
+    marca: "Toyota",
+    modelo: "Corolla",
+    anio: 2020,
+    estaDisponible: false
 }
 
 //2. Muestra el objeto completo en consola utilizando console.table().
@@ -13,16 +13,16 @@ console.table(coche)
 
 //3. Usa la desestructuración (destructuring) para extraer la ‘marca’ y el ‘modelo’ 
 // en variables separadas e imprímelas en consola.
-const {marca:MARCACOCHE,modelo:MODELOCOCHE}=coche
-console.log("Marca del Coche: ",MARCACOCHE)
-console.log("Modelo del Coche: ",MODELOCOCHE)
+const { marca: MARCACOCHE, modelo: MODELOCOCHE } = coche
+console.log("Marca del Coche: ", MARCACOCHE)
+console.log("Modelo del Coche: ", MODELOCOCHE)
 
 //4. Cambia el valor de la propiedad ‘estaDisponible’ a ‘true’.
-coche.estaDisponible=true
-console.log("Valor Nuevo de la variable estaDisponible:",coche.estaDisponible)
+coche.estaDisponible = true
+console.log("Valor Nuevo de la variable estaDisponible:", coche.estaDisponible)
 
 //5. Agrega una nueva propiedad ‘color’ al objeto.
-coche=Object.assign({color:"Azul"},coche)
+coche = Object.assign({ color: "Azul" }, coche)
 console.log("Objeto 'coche' después de añadirle la propiedad 'color'")
 console.table(coche)
 

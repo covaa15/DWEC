@@ -1,6 +1,6 @@
 //1. Crea un array llamado ciudades con los siguientes strings: "Madrid", "Buenos Aires",
 //  "Tokio", "Nueva York", "París".
-let ciudades=["Madrid", "Buenos Aires", "Tokio", "Nueva York", "París"]
+let ciudades = ["Madrid", "Buenos Aires", "Tokio", "Nueva York", "París"]
 
 console.log("Array ciudades antes de añadir 'Roma'")
 console.log(ciudades)
@@ -10,7 +10,7 @@ ciudades.push("Roma")
 
 //3. Crea un nuevo array ciudadesMayusculas utilizando el método .map() que contenga todos 
 // los elementos del array original pero en mayúsculas.
-let ciudadesMayusculas=ciudades.map(function (tech){
+let ciudadesMayusculas = ciudades.map(function (tech) {
 
     return tech.toUpperCase()
 })
@@ -18,8 +18,8 @@ let ciudadesMayusculas=ciudades.map(function (tech){
 //4. Crea un nuevo array ciudadesFiltradas utilizando el método .filter() que contenga 
 // solo los elementos que tienen más de 6 caracteres.
 
-let ciudadesFiltradas=ciudades.filter(function (tech){
-    if(tech.length>6)
+let ciudadesFiltradas = ciudades.filter(function (tech) {
+    if (tech.length > 6)
         return tech
 })
 
