@@ -68,23 +68,40 @@ console.log(estudiantesFiltrado)
 //4. Para cada estudiante en el array filtrado (los aprobados), imprime un mensaje 
 // en consola usando Template Strings que diga: “¡Felicidades [nombre], has aprobado con [calificacion]!”.
 
-console.log("Mensajes Ejercicio 4:")
+console.log("Mensajes Ejercicio 4 con for:")
 for (let i = 0; i < estudiantesFiltrado.length; i++) {
 
-    console.log(`¡Felicidades ${estudiantesFiltrado[i].nombre}, has aprobado con ${estudiantesFiltrado[i].calificacion}`)
+    console.info(`¡Felicidades ${estudiantesFiltrado[i].nombre}, has aprobado con ${estudiantesFiltrado[i].calificacion}`)
 
 }
+
+console.log("Mensajes Ejercicio 4 con map:")
+estudiantesFiltrado.map(function(estudiante){
+    console.info(`¡Felicidades ${estudiante.nombre}, has aprobado con ${estudiante.calificacion}`)
+})
+
 
 /*5. Recorre el array original y verifica si el valor de la propiedad aprobado es coherente con la 
 calificacion (es decir, si calificacion >= 5 entonces aprobado debe ser true, y si es menor, debe ser false).
 Si hay incoherencias, imprime un mensaje como:
 “⚠️ Incoherencia en el registro de [nombre]: calificación = [calificacion], aprobado = [aprobado]”*/
-console.log("Mostramos las incoherencias:")
+console.log("Mostramos las incoherencias usando for:")
 for (let i = 0; i < estudiantes.length; i++) {
     if ((estudiantes[i].calificacion >= 5 && estudiantes[i].aprobado == false) ||
         (estudiantes[i].calificacion < 5 && estudiantes[i].aprobado == true)) {
-        console.log(`⚠️ Incoherencia en el registro de: ${estudiantes[i].nombre}, calificación = ${estudiantes[i].calificacion}, aprobado = ${estudiantes[i].aprobado ? "Sí" : "No"}`)
+        console.warn(`⚠️ Incoherencia en el registro de: ${estudiantes[i].nombre}, calificación = ${estudiantes[i].calificacion}, aprobado = ${estudiantes[i].aprobado ? "Sí" : "No"}`)
 
     }
 
 }
+
+
+console.log("Mostramos las incoherencias usando map:")
+estudiantes.map(function(estudiante){
+    if((estudiante.calificacion >= 5 && estudiante.aprobado == false)|| 
+    (estudiante.calificacion < 5 && estudiante.aprobado == true))
+    console.warn(`⚠️ Incoherencia en el registro de: ${estudiante.nombre}, calificación = ${estudiante.calificacion}, aprobado = ${estudiante.aprobado ? "Sí" : "No"}`)
+
+})
+
+
