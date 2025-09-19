@@ -93,8 +93,8 @@ console.log(cursos)
 - promedioCalificaciones (promedio de las calificaciones de los estudiantes) */
 
 let resumenCursos = cursos.map(function (curso) {
-  
-    let suma = curso.estudiantes.reduce((acum, estudiante) => acum + estudiante.calificacion, 0);
+
+    let suma = curso.estudiantes.reduce((suma, estudiante) => suma + estudiante.calificacion, 0);
     let promedio = (suma / curso.estudiantes.length);
 
     return {
@@ -109,11 +109,11 @@ console.log(resumenCursos);
 //3. Utiliza .filter() para obtener un array cursosDestacados que contenga solo los cursos
 //  cuyo promedio de calificaciones sea mayor o igual a 7.
 
-let cursosDestacados=cursos.filter(function(curso){
+let cursosDestacados = cursos.filter(function (curso) {
     let suma = curso.estudiantes.reduce((acum, estudiante) => acum + estudiante.calificacion, 0);
     let promedio = (suma / curso.estudiantes.length);
 
-    if(promedio>=7)
+    if (promedio >= 7)
         return curso
 })
 console.log("Cursos Destacados")
@@ -122,32 +122,56 @@ console.log(cursosDestacados)
 //4. Recorre los cursos destacados e imprime en consola un mensaje como:
 //`"📘 El curso [nombreCurso] tiene un promedio de [promedio] y es considerado destacado."`
 
-console.log("Cursos destacados:")
+console.log("Cursos destacados usando for:")
 for (let i = 0; i < cursosDestacados.length; i++) {
-    
-    let curso=cursosDestacados[i]
-    let suma=0
-    for (let j = 0; j < curso.estudiantes.length; j++) {
-        suma+=curso.estudiantes[j].calificacion
-    }
-    let promedio=suma/curso.estudiantes.length
 
-    console.log(`📘 El curso ${curso.nombre} tiene un promedio de ${promedio.toFixed(2)} y es considerado destacado`)
-    
+    let curso = cursosDestacados[i]
+    let suma = 0
+    for (let j = 0; j < curso.estudiantes.length; j++) {
+        suma += curso.estudiantes[j].calificacion
+    }
+    let promedio = suma / curso.estudiantes.length
+
+    console.info(`📘 El curso ${curso.nombre} tiene un promedio de ${promedio.toFixed(2)} y es considerado destacado`)
+
 }
+
+console.log("Cursos destacados usando Map:")
+
+cursosDestacados.map(function (curso) {
+
+    let suma2 = curso.estudiantes.reduce((suma, estudiante) => suma + estudiante.calificacion, 0);
+    let promedio2 = (suma2 / curso.estudiantes.length);
+    console.info(`📘 El curso ${curso.nombre} tiene un promedio de ${promedio2.toFixed(2)} y es considerado destacado`)
+
+})
 
 
 //5. Verifica si hay algún estudiante con calificación menor a 4 en cada curso. Si lo hay, imprime:
 //`"⚠️ Atención: En el curso [nombreCurso] hay estudiantes con calificaciones muy bajas."`
 
-console.log("Aviso calificaciones bajas en los cursos:")
+console.log("Aviso calificaciones bajas en los cursos usando for:")
 for (let i = 0; i < cursos.length; i++) {
-    let curso=cursos[i]
+    let curso = cursos[i]
     for (let j = 0; j < curso.estudiantes.length; j++) {
-        
-        if (curso.estudiantes[j].calificacion<4)
-            console.log(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
-                  
+
+        if (curso.estudiantes[j].calificacion < 4)
+            console.warn(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
+
     }
-        
+
 }
+
+
+console.log("Aviso calificaciones bajas en los cursos usando Map:")
+
+cursos.map(function (curso) {
+
+    let estudiantesCurso = curso.estudiantes
+
+    estudiantesCurso.map(function (estudiante) {
+        if (estudiante.calificacion < 4)
+            console.warn(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
+    })
+
+})
