@@ -23,6 +23,7 @@ const cliente = {
 //     ...producto // spread operator
 // }
 
+//Spread Operator
 const nuevoObjeto = {
     ...producto,
     ...cliente,

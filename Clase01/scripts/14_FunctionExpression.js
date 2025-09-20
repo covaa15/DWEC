@@ -6,6 +6,7 @@ sumar(100)
 // // Funciones - Function Expression
 // se pueden asignar a una variable
 // hay que llamarlas después de haber sido declaradas
+
 // const sumar = function(numero1 = 0, numero2 = 0) {
 //     console.log(numero1 + numero2)
 // }
