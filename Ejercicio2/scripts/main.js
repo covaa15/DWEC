@@ -35,6 +35,7 @@ let usuarios2=[
 ]
 console.log("Array Usuarios2:")
 console.log(usuarios2)
+
 //Usa las funciones importadas para realizar las siguientes operaciones
 // y mostrar los resultados en la consola:
 
@@ -53,10 +54,10 @@ console.log(usuarios2)
         console.log(mostrarPerfil(usuario))
     })
 
-    //Llama a calcularPromedioEdad con el array original de usuarios y
+    //3. Llama a calcularPromedioEdad con el array original de usuarios y
     //  muestra el resultado en un mensaje claro, por ejemplo: 
     // “La edad promedio de los usuarios es: [promedio]”.
 
     let promedio=calcularPromedioEdad(usuarios2)
-    console.log("Promedio:")
+    console.log("Promedio de edades:")
     console.log(`La edad promedio de los usuarios es:${promedio}`)
