@@ -34,7 +34,7 @@ export function esMayorDeEdad(usuario) {
 // solo con los usuarios que cumplen la condición.
 
 export function obtenerMayoresDeEdad(usuarios) {
-    let usuariosMayoresDeEdad=usuarios.filter((usuario) => {
+    let usuariosMayoresDeEdad = usuarios.filter((usuario) => {
         if (esMayorDeEdad(usuario) === true)
             return usuario
     })

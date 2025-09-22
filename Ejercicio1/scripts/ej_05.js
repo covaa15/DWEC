@@ -100,7 +100,7 @@ for (let i = 0; i < estudiantes.length; i++) {
 console.log("Mostramos las incoherencias usando map:")
 
 console.log("1º.Creo una incoherencia para probar el Map ya que antes las solucioné con el for")
-estudiantes[0].aprobado=false;
+estudiantes[0].aprobado = false;
 console.log("Registro en el que cree la incoherencia:")
 console.log(estudiantes[0])
 
