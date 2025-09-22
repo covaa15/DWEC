@@ -153,13 +153,13 @@ cursosDestacados.map(function (curso) {
 console.log("Aviso calificaciones bajas en los cursos usando for:")
 for (let i = 0; i < cursos.length; i++) {
     let curso = cursos[i]
-    let puedeMensajeCurso=true
+    let puedeMensajeCurso = false
     for (let j = 0; j < curso.estudiantes.length; j++) {
 
-        if (curso.estudiantes[j].calificacion < 4&& !puedeMensajeCurso){
+        if (curso.estudiantes[j].calificacion < 4 && puedeMensajeCurso === false) {
             console.warn(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
-            puedeMensajeCurso=true
-        
+            puedeMensajeCurso = true
+
         }
 
 
@@ -173,12 +173,12 @@ console.log("Aviso calificaciones bajas en los cursos usando Map:")
 cursos.map(function (curso) {
 
     let estudiantesCurso = curso.estudiantes
-    let puedeMensajeCurso=true
+    let puedeMensajeCurso = false
 
     estudiantesCurso.map(function (estudiante) {
-        if (estudiante.calificacion < 4 && !puedeMensajeCurso){
+        if (estudiante.calificacion < 4 && puedeMensajeCurso === false) {
             console.warn(`⚠️ Atención: En el curso ${curso.nombre} hay estudiantes con calificaciones muy bajas`)
-            puedeMensajeCurso=true
+            puedeMensajeCurso = true
         }
 
     })

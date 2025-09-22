@@ -76,7 +76,7 @@ for (let i = 0; i < estudiantesFiltrado.length; i++) {
 }
 
 console.log("Mensajes Ejercicio 4 con map:")
-estudiantesFiltrado.map(function(estudiante){
+estudiantesFiltrado.map(function (estudiante) {
     console.info(`¡Felicidades ${estudiante.nombre}, has aprobado con ${estudiante.calificacion}`)
 })
 
@@ -90,17 +90,28 @@ for (let i = 0; i < estudiantes.length; i++) {
     if ((estudiantes[i].calificacion >= 5 && estudiantes[i].aprobado == false) ||
         (estudiantes[i].calificacion < 5 && estudiantes[i].aprobado == true)) {
         console.warn(`⚠️ Incoherencia en el registro de: ${estudiantes[i].nombre}, calificación = ${estudiantes[i].calificacion}, aprobado = ${estudiantes[i].aprobado ? "Sí" : "No"}`)
-
+        estudiantes[i].aprobado = !estudiantes[i].aprobado
+        console.log("Incoherencia corregida:")
+        console.log(`${estudiantes[i].nombre}, calificación = ${estudiantes[i].calificacion}, aprobado = ${estudiantes[i].aprobado ? "Sí" : "No"}`)
     }
 
 }
 
-
 console.log("Mostramos las incoherencias usando map:")
-estudiantes.map(function(estudiante){
-    if((estudiante.calificacion >= 5 && estudiante.aprobado == false)|| 
-    (estudiante.calificacion < 5 && estudiante.aprobado == true))
-    console.warn(`⚠️ Incoherencia en el registro de: ${estudiante.nombre}, calificación = ${estudiante.calificacion}, aprobado = ${estudiante.aprobado ? "Sí" : "No"}`)
+
+console.log("1º.Creo una incoherencia para probar el Map ya que antes las solucioné con el for")
+estudiantes[0].aprobado=false;
+console.log("Registro en el que cree la incoherencia:")
+console.log(estudiantes[0])
+
+estudiantes.map(function (estudiante) {
+    if ((estudiante.calificacion >= 5 && estudiante.aprobado == false) ||
+        (estudiante.calificacion < 5 && estudiante.aprobado == true)) {
+        console.warn(`⚠️ Incoherencia en el registro de: ${estudiante.nombre}, calificación = ${estudiante.calificacion}, aprobado = ${estudiante.aprobado ? "Sí" : "No"}`)
+        estudiante.aprobado = !estudiante.aprobado
+        console.log("Incoherencia corregida:")
+        console.log(`${estudiante.nombre},  calificación = ${estudiante.calificacion}, aprobado = ${estudiante.aprobado ? "Sí" : "No"}`)
+    }
 
 })
 
