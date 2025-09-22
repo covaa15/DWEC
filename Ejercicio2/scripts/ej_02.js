@@ -27,7 +27,7 @@ const calcularAreaTrianguloArrow = (base, altura) => {
 
 
 //4.Añade valores por defecto a los parámetros de cualquiera de las funciones anteriores.
-const calcularAreaTrianguloValoresPorDefecto = (base =8, altura = 4) => {
+const calcularAreaTrianguloValoresPorDefecto = (base = 8, altura = 4) => {
     console.log("Área Triángulo usando Parametros con valores por defecto:")
     console.log(`La base es ${base} y la altura es ${altura}:`)
     console.log((base * altura) / 2)
@@ -36,9 +36,9 @@ const calcularAreaTrianguloValoresPorDefecto = (base =8, altura = 4) => {
 
 //5.Llama a cada función con valores de prueba y muestra el resultado en la consola.
 
-calcularAreaRectangulo(Math.floor(Math.random() * 100),Math.floor(Math.random() * 100))
-calcularAreaTriangulo(Math.floor(Math.random() * 100),Math.floor(Math.random() * 100))
-calcularAreaTrianguloArrow(Math.floor(Math.random() * 100),Math.floor(Math.random() * 100))
+calcularAreaRectangulo(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
+calcularAreaTriangulo(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
+calcularAreaTrianguloArrow(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
 calcularAreaTrianguloValoresPorDefecto()
 
 

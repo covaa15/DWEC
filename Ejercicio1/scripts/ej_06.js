@@ -94,7 +94,7 @@ console.log(cursos)
 
 let resumenCursos = cursos.map(function (curso) {
 
-    let suma = curso.estudiantes.reduce((suma, estudiante) => suma + estudiante.calificacion, 0);
+    let suma = curso.estudiantes.reduce((acum, estudiante) => acum + estudiante.calificacion, 0);
     let promedio = (suma / curso.estudiantes.length);
 
     return {

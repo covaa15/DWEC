@@ -1,23 +1,23 @@
 //1. Crea un objeto usuario con nombre y email.
 
 let usuario = {
-    nombre : "Martín",
-    email:"martin123@gmail.com"
+    nombre: "Martín",
+    email: "martin123@gmail.com"
 }
 console.log("Usuario:")
 console.log(usuario)
 
 //2. Crea un objeto perfil con puesto y empresa.
 let perfil = {
-    puesto:"Programador",
-    empresa:"EDP"
+    puesto: "Programador",
+    empresa: "EDP"
 }
 console.log("Perfil:")
 console.log(perfil)
 
 //3.Combina ambos objetos en un nuevo objeto empleado usando el “spread operator” (...).
 
-let empleado={
+let empleado = {
     ...usuario,
     ...perfil
 }
@@ -35,7 +35,7 @@ console.log(empleado.perfil?.direccion?.ciudad)
 (“Ciudad no especificada”) si el resultado del paso anterior es null o undefined.*/
 
 console.log("Resultado Nullish Coalescing Operator (??): ")
-console.log(empleado.perfil?.direccion?.ciudad??"Ciudad no especificada")
+console.log(empleado.perfil?.direccion?.ciudad ?? "Ciudad no especificada")
 
 
 
