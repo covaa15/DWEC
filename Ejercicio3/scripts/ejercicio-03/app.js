@@ -1,5 +1,5 @@
 //importa las funciones del módulo biblioteca.js
-import { agregarLibro,obtenerLibros,eliminarLibro,buscarLibro,calcularTotalPaginas,ordenarPorPaginas, hayLibrosLargos,todosSonLibrosCortos } from "./biblioteca.js"
+import { agregarLibro, obtenerLibros, eliminarLibro, buscarLibro, calcularTotalPaginas, ordenarPorPaginas, hayLibrosLargos, todosSonLibrosCortos } from "./biblioteca.js"
 
 //Usa obtenerLibros() para mostrar la colección inicial.
 console.log("Colección de Libros Inicial")
@@ -7,33 +7,35 @@ console.table(obtenerLibros())
 
 
 //Usa agregarLibro() para añadir un nuevo libro
-let libro={
-    id:obtenerLibros().length,
-    titulo:"Código Lyoko:4: El Ejercito de la Nada",
-    autor:"Jeremy Belpois",
-    paginas:368
+let libro = {
+    id: obtenerLibros().length + 1,
+    titulo: "Código Lyoko:4: El Ejercito de la Nada",
+    autor: "Jeremy Belpois",
+    paginas: 368
 }
+agregarLibro(libro)
+
 //Vuelve a mostrar la colección para verificar que se ha añadido.
 console.log("Colección de Libros Después de añadirle otro libro")
 console.table(obtenerLibros())
 
 //Buscar Libro que no existe
 console.log("Busco el libro con la ID 20:")
-let libroBuscado=buscarLibro(20)
+let libroBuscado = buscarLibro(20)
 
-if(libroBuscado==null)
+if (libroBuscado == null)
     console.log("El libro buscado no existe")
 else
-console.log(libroBuscado)
+    console.log(libroBuscado)
 
 //Buscar un libro que existe
 console.log("Busco el libro con la ID 8:")
-libroBuscado=buscarLibro(8)
+libroBuscado = buscarLibro(8)
 
-if(libroBuscado==null)
+if (libroBuscado == null)
     console.log("El libro buscado no existe")
 else
-console.log(libroBuscado)
+    console.log(libroBuscado)
 
 //Eliminar un Libro
 console.table("Eliminamos el libro que esta en la posicion 3")
@@ -54,14 +56,14 @@ console.table(obtenerLibros())
 
 //Hay Libros Largos
 console.log("¿Hay libros Largos con mas de 10000?")
-console.log(`${hayLibrosLargos(10000) ? 'Sí':'No'}`)
+console.log(`${hayLibrosLargos(10000) ? 'Sí' : 'No'}`)
 
 console.log("¿Hay libros Largos con mas de 500?")
-console.log(`${hayLibrosLargos(500) ? 'Sí':'No'}`)
+console.log(`${hayLibrosLargos(500) ? 'Sí' : 'No'}`)
 
 //Todos Son Libros Cortos
 console.log("¿Todos son libros cortos con menos de 10000?")
-console.log(`${todosSonLibrosCortos(10000) ? 'Sí':'No'}`)
+console.log(`${todosSonLibrosCortos(10000) ? 'Sí' : 'No'}`)
 
 console.log("¿Todos son libros cortos con menos de 100?")
-console.log(`${todosSonLibrosCortos(100) ? 'Sí':'No'}`)
+console.log(`${todosSonLibrosCortos(100) ? 'Sí' : 'No'}`)
