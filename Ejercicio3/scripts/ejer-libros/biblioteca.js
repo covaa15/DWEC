@@ -66,7 +66,7 @@ let libros = [
         titulo: "El viaje de Parvana",
         autor: "Deborah Ellis",
         paginas: 176
-    },
+    }
 
 ]
 
