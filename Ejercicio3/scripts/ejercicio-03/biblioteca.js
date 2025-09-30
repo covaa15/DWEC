@@ -114,7 +114,8 @@ function eliminarLibro(id) {
 
 //EJERCICIO 3.5
 
-//calcularTotalPaginas(): Utiliza el método .reduce() para calcular la suma total de las páginas de todos los libros de la biblioteca.
+//calcularTotalPaginas(): Utiliza el método .reduce() para calcular la suma total de las 
+// páginas de todos los libros de la biblioteca.
 function calcularTotalPaginas(){
 
     const suma = libros.reduce((acum, libro) => acum + libro.paginas, 0);
@@ -124,11 +125,30 @@ function calcularTotalPaginas(){
 
 // EJERCICIO 3.6
 
-//1. ordenarPorPaginas(): Utiliza el método .sort() para ordenar los libros de la colección de menor a mayor número de páginas.
+//1. ordenarPorPaginas(): Utiliza el método .sort() para ordenar los libros 
+// de la colección de menor a mayor número de páginas.
 function ordenarPorPaginas() {
     libros.sort((libroAnterior,libroPosterior)=>libroAnterior.paginas-libroPosterior.paginas)
 }
 
+
+//EJERCICIO 3.7
+
+//1. hayLibrosLargos(limitePaginas): Utiliza .some() para comprobar si hay al menos un libro en 
+// la colección que tenga más páginas que limitePaginas.
+
+function hayLibrosLargos(limitePaginas){
+    return libros.some(libro => libro.paginas > limitePaginas)
+}
+
+//2. todosSonLibrosCortos(limitePaginas): Utiliza .every() para comprobar si todos los libros 
+// de la colección tienen menos páginas que limitePaginas.
+
+function todosSonLibrosCortos(limitePaginas){
+    return libros.every(libro => libro.paginas < limitePaginas)
+}
+
+
 //Exporta funciones.
 
-export{agregarLibro,obtenerLibros,buscarLibro,eliminarLibro,calcularTotalPaginas,ordenarPorPaginas}
+export{agregarLibro,obtenerLibros,buscarLibro,eliminarLibro,calcularTotalPaginas,ordenarPorPaginas,hayLibrosLargos,todosSonLibrosCortos}

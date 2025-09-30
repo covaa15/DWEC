@@ -1,5 +1,5 @@
 //importa las funciones del módulo biblioteca.js
-import { agregarLibro,obtenerLibros,eliminarLibro,buscarLibro,calcularTotalPaginas,ordenarPorPaginas } from "./biblioteca.js"
+import { agregarLibro,obtenerLibros,eliminarLibro,buscarLibro,calcularTotalPaginas,ordenarPorPaginas, hayLibrosLargos,todosSonLibrosCortos } from "./biblioteca.js"
 
 //Usa obtenerLibros() para mostrar la colección inicial.
 console.log("Colección de Libros Inicial")
@@ -50,4 +50,18 @@ ordenarPorPaginas()
 console.log("Collección de libros después de organizar")
 console.table(obtenerLibros())
 
+//prueba ambas funciones con diferentes valores de limitePaginas y muestra los resultados (true o false).
 
+//Hay Libros Largos
+console.log("¿Hay libros Largos con mas de 10000?")
+console.log(`${hayLibrosLargos(10000) ? 'Sí':'No'}`)
+
+console.log("¿Hay libros Largos con mas de 500?")
+console.log(`${hayLibrosLargos(500) ? 'Sí':'No'}`)
+
+//Todos Son Libros Cortos
+console.log("¿Todos son libros cortos con menos de 10000?")
+console.log(`${todosSonLibrosCortos(10000) ? 'Sí':'No'}`)
+
+console.log("¿Todos son libros cortos con menos de 100?")
+console.log(`${todosSonLibrosCortos(100) ? 'Sí':'No'}`)
