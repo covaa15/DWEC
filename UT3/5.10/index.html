@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Clonado de Elementos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .tarjeta {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f9f9f9;
+    }
+    .clones {
+      margin-top: 20px;
+    }
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejemplo de clonado de elementos</h2>
+
+  <!-- Elemento base a clonar -->
+  <div id="tarjetaOriginal" class="tarjeta">
+    <h3>Tarjeta original</h3>
+    <p>Contenido de ejemplo.</p>
+  </div>
+
+  <!-- Botones -->
+  <button onclick="clonar(true)">Clonar con contenido</button>
+  <button onclick="clonar(false)">Clonar solo estructura</button>
+
+  <!-- Donde se mostrarán los clones -->
+  <div id="contenedorClones" class="clones"></div>
+
+  <script>
+    function clonar(conContenido) {
+      const original = document.getElementById("tarjetaOriginal");
+      const clon = original.cloneNode(conContenido); // true = con hijos, false = solo estructura
+
+      // Opcional: modificar algo del clon para diferenciarlo
+      clon.querySelector('h3')?.append(" (Clonado)");
+      
+      document.getElementById("contenedorClones").appendChild(clon);
+    }
+  </script>
+
+</body>
+</html>

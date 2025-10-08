@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulación del DOM</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .caja {
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Manipulación del DOM con JavaScript</h2>
+
+  <div id="contenedor" class="caja">
+    <p id="elementoObjetivo">Elemento objetivo, soy un párrafo</p>
+  </div>
+
+  <button onclick="usarAppend()">append()</button>
+  <button onclick="usarPrepend()">prepend()</button>
+  <button onclick="usarBefore()">before()</button>
+  <button onclick="usarAfter()">after()</button>
+  <button onclick="usarReplaceWith()">replaceWith()</button>
+
+  <script>
+    const objetivo = document.getElementById("elementoObjetivo");
+
+    function usarAppend() {
+      objetivo.append(" ← Texto agregado con append()");
+    }
+
+    function usarPrepend() {
+      objetivo.prepend("Texto con prepend() → ");
+    }
+
+    function usarBefore() {
+      const nuevo = document.createElement("div");
+      nuevo.textContent = "📌 Elemento insertado con before() soy un div antes del <p>";
+      objetivo.before(nuevo);
+    }
+
+    function usarAfter() {
+      const nuevo = document.createElement("div");
+      nuevo.textContent = "📌 Elemento insertado con after() soy un div después del <p>";
+      objetivo.after(nuevo);
+    }
+
+    function usarReplaceWith() {
+      const nuevo = document.createElement("div");
+      nuevo.textContent = "🧊 Reemplazado con replaceWith() <p> por un div";
+      objetivo.replaceWith(nuevo);
+    }
+  </script>
+
+</body>
+</html>
