@@ -36,7 +36,7 @@ function filtrarPorPais(texto) {
 }
 mostrarCiudades();
 
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('button').addEventListener('click', function()  {
     const texto = document.getElementById('filtroPais').value;
     filtrarPorPais(texto);
 });
