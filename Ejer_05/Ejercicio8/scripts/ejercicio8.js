@@ -9,7 +9,7 @@ function ordenarLista() {
 
     // 4. Usa el método .sort() del array para ordenar los elementos 
     // basándote en su textContent.
-    elementos.sort((a, b) => Number(a.textContent) - Number(b.textContent));
+    elementos.sort((a, b) => a.textContent.localeCompare(b.textContent));
 
     const lista = document.querySelector('ul');
 
