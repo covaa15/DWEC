@@ -28,19 +28,29 @@ document.querySelectorAll('li button').forEach((boton) => {
 
 // Función para actualizar el estado de los botones 
 function actualizarBotones() {
-    let itemsLista = lista.querySelectorAll('li');
-    itemsLista.forEach((li, posicion) => {
-        let botonSubir = li.querySelector('.subir');
-        let botonBajar = li.querySelector('.bajar');
+    const elementos = lista.querySelectorAll('li');
+    const total = elementos.length;
 
-        // Deshabilito el boton subir si es el primer elemento
+    elementos.forEach((item, index) => {
+        const botonSubir = item.querySelector('.subir');
+        const botonBajar = item.querySelector('.bajar');
+
+        // Deshabilitar el botón subir si es el primer elemento
         if (botonSubir) {
-            botonSubir.disabled = (posicion === 0);
+            if (index === 0) {
+                botonSubir.disabled = true;
+            } else {
+                botonSubir.disabled = false;
+            }
         }
 
-        // Desgabilito el boton bajar si es el último elemento
+        // Deshabilitar el botón bajar si es el último elemento
         if (botonBajar) {
-            botonBajar.disabled = (posicion === itemsLista.length - 1);
+            if (index === total - 1) {
+                botonBajar.disabled = true;
+            } else {
+                botonBajar.disabled = false;
+            }
         }
     });
 }
