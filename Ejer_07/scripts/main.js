@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Solución Ejercicio 1 y 4 ---
 
-    const contenedorPadre = document.getElementById('outer-box');
+    const contenedorPadre = document.querySelector('#outer-box');
 
     contenedorPadre.addEventListener('click', function (event) {
         if (event.target !== contenedorPadre) {
