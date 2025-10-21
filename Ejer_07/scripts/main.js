@@ -11,33 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const contenedorPadre = document.querySelector('#outer-box');
     const middleBox = document.querySelector('#middle-box');
 
-
     contenedorPadre.addEventListener('click', function (event) {
-        if (event.target !== contenedorPadre) {
-            quitarColor();
-            if (event.target) {
-                document.querySelector('#' + event.target.id).classList.add('color');
 
-                console.log('ID Elemento pulsado:', event.target.id);
-                console.log('ID Elemento Padre:', event.currentTarget.id);
-            }
+
+        if (event.target) {
+            document.querySelector('#' + event.target.id).classList.add('color');
+
+            console.log('ID Elemento pulsado:', event.target.id);
+            console.log('ID Elemento Contenedor:', event.currentTarget.id);
         }
+
     });
 
 
-    // middleBox.addEventListener('click', function (event) {
-    //     event.stopPropagation();
-    //     quitarColor();
-    //     middleBox.classList.add('color');
-    // });
-
-    // Función que quita el color al hacer click en otro hijo
-    function quitarColor() {
-        contenedorPadre.querySelectorAll('div').forEach((contenedor) => {
-            contenedor.classList.remove('color');
-        });
-    }
-
+    middleBox.addEventListener('click', function (event) {
+        event.stopPropagation();
+        middleBox.classList.add('color');
+        console.log('Propagacion Detenida');
+    });
 
 
 
@@ -71,12 +62,49 @@ document.addEventListener('DOMContentLoaded', () => {
     function volverArriba() {
         window.scrollTo({
             top: 0,
-            behavior: "smooth",
+            behavior: "smooth"
         });
     }
 
-
-
     // --- Solución Ejercicio 5 ---
+
+    const botonLanzarNoti = document.getElementById('notification-btn');
+    const notArea = document.querySelector('#notification-area');
+
+    let esPrimeraVez = true;
+
+    botonLanzarNoti.addEventListener('click', function () {
+
+        const notification = new CustomEvent('notification', {
+            detail: {
+                mensaje: 'Hola Mundo',
+                fecha: new Date()
+            }
+        });
+        document.body.dispatchEvent(notification);
+
+        if (esPrimeraVez === true) {
+            const primerParrafo = notArea.querySelector('p');
+            notArea.removeChild(primerParrafo);
+        }
+
+        esPrimeraVez = false;
+
+    });
+
+
+    document.body.addEventListener('notification', function (event) {
+
+
+
+        const parrafo = document.createElement('p');
+        parrafo.textContent = `Notificación: ${event.detail.mensaje} - Fecha: ${event.detail.fecha.toLocaleString()}`;
+        notArea.appendChild(parrafo);
+
+    });
+
+
+
+
 
 });
