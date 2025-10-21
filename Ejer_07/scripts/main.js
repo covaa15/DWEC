@@ -52,6 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Solución Ejercicio 3 ---
 
+    const botonVolverArriba = document.querySelector('#back-to-top');
+
+    //Cuando hago scroll obtengo la posY, si es mayor de 250 muestro boton sino lo oculto
+    window.addEventListener('scroll', function (event) {
+        let distanciaTop = this.scrollY;
+
+        if (distanciaTop >= 250)
+            botonVolverArriba.classList.remove('hidden')
+        else
+            botonVolverArriba.classList.add('hidden')
+    })
+
+    //Cuando pulso el boton vuelvo al principio de la hoja
+    botonVolverArriba.addEventListener('click', function () { volverArriba() });
+
+    //Funcion que me lleva arriba de manera suave
+    function volverArriba() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
+
 
     // --- Solución Ejercicio 5 ---
 
