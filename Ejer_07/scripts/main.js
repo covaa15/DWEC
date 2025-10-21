@@ -5,39 +5,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Solución Ejercicio 1 y 4 ---
 
+
+    //EJERCICIO 1
+
     const contenedorPadre = document.querySelector('#outer-box');
+    const middleBox = document.querySelector('#middle-box');
+
 
     contenedorPadre.addEventListener('click', function (event) {
         if (event.target !== contenedorPadre) {
             quitarColor();
             if (event.target) {
-                //Cambio el color al div hijo clicado
-                document.getElementById(event.target.id).classList.add('color');
+                document.querySelector('#' + event.target.id).classList.add('color');
 
-                //Muestro las ID por consola
-                console.log('ID Elemento pulsado:', event.target.id)
-                console.log('ID Elemento Padre:', event.currentTarget.id)
+                console.log('ID Elemento pulsado:', event.target.id);
+                console.log('ID Elemento Padre:', event.currentTarget.id);
             }
-
         }
-
     });
 
-    //Funcion que quita el color al hacer click en otro hijo
+
+    // middleBox.addEventListener('click', function (event) {
+    //     event.stopPropagation();
+    //     quitarColor();
+    //     middleBox.classList.add('color');
+    // });
+
+    // Función que quita el color al hacer click en otro hijo
     function quitarColor() {
         contenedorPadre.querySelectorAll('div').forEach((contenedor) => {
             contenedor.classList.remove('color');
-        })
+        });
     }
 
 
 
 
-  
-
-
-
     // --- Solución Ejercicio 2 ---
+
+    document.querySelector("#test-link").addEventListener('click', function (event) {
+
+        event.preventDefault();
+        console.log("Navegación prevenida")
+    })
 
 
     // --- Solución Ejercicio 3 ---
