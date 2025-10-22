@@ -9,25 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     //EJERCICIO 1
 
     const contenedorPadre = document.querySelector('#outer-box');
-    const middleBox = document.querySelector('#middle-box');
 
     contenedorPadre.addEventListener('click', function (event) {
 
 
         if (event.target) {
-            document.querySelector('#' + event.target.id).classList.add('color');
+            
+            event.target.classList.add('color');
 
             console.log('ID Elemento pulsado:', event.target.id);
             console.log('ID Elemento Contenedor:', event.currentTarget.id);
         }
 
-    });
-
-
-    middleBox.addEventListener('click', function (event) {
-        event.stopPropagation();
-        middleBox.classList.add('color');
-        console.log('Propagacion Detenida');
     });
 
 
