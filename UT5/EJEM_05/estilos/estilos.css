@@ -1,0 +1,13 @@
+input:required:invalid, input:focus:invalid { 
+     border: thick solid red; 
+ } 
+input:required:valid { 
+    border: thick solid lightgreen; 
+} 
+#email-error{
+    display: none;
+    background-color: red;
+    color: azure;
+    padding: 5px;
+    border-radius: 10px;
+}
