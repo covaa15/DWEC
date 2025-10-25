@@ -10,12 +10,12 @@
 
 <body>
     <form>
-        <h1>Diseña tú Pizza</h1>
+        <h1 id="titulo">Diseña tú Pizza</h1>
         <h2>Tamaño</h1>
         <div className="tamanio">
-            <label><input type="radio" name="opcion" data-price="10" checked> Pequeña (10€)</label>
-            <label><input type="radio" name="opcion" data-price="12"> Mediana (12€)</label>
-            <label><input type="radio" name="opcion" data-price="15"> Grande (15€)</label>
+            <label><input type="radio" name="tamaño" data-price="10" checked> Pequeña (10€)</label>
+            <label><input type="radio" name="tamaño" data-price="12"> Mediana (12€)</label>
+            <label><input type="radio" name="tamaño" data-price="15"> Grande (15€)</label>
         </div>
 
         <h2>Ingredientes</h1>
@@ -34,7 +34,7 @@
         </select>
 
         <section>
-            <h2>Precio Total:<span id="total"> </span>€</h2>
+            <h1>Precio Total:<span id="total"> </span></h1>
         </section>
 
         <button type="submit" id="boton">Realizar Pedido</button>

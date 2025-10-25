@@ -3,6 +3,7 @@ const TodosInputs = document.querySelectorAll('input');
 const ElSelect = document.querySelector('select');
 const Total = document.querySelector('#total');
 const BotonEnviar = document.querySelector('#boton');
+const BorrarPedido = document.querySelector('#borrar');
 let opcion;
 let ingredientes;
 
@@ -48,7 +49,7 @@ function actualizarPedido() {
     }
 
     //Añado el precio al total
-    Total.textContent = total.toFixed(2);
+    Total.textContent = total.toFixed(2)+" €";
 }
 
 function mostrarDatos() {
@@ -80,3 +81,12 @@ BotonEnviar.addEventListener('click', function (event) {
     mostrarDatos();
 });
 
+
+//Reseteo la etiqueta del precio
+BorrarPedido.addEventListener('click', function () {
+    setTimeout(actualizarPedido, 0);
+});
+/*Tengo que usar el setTimeout para que se ejecute el listener del boton BorrarPedido
+un milisegundo después de que el formulario haya terminado de resetearse, ya que cuando
+pulso el boto BorrarPedido, lo primero que se ejecuta es el reset que tiene el boton y 
+después el evento listener*/
