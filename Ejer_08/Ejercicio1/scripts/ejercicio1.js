@@ -12,7 +12,6 @@ actualizarPedido();
 //Actualiza el precio final dependiendo los inputs que esten seleccionados
 TodosInputs.forEach(unInput => {
     unInput.addEventListener('change', () => {
-        unInput.checked;
         actualizarPedido();
     });
 });
