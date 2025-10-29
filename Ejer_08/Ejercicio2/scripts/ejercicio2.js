@@ -5,13 +5,14 @@ const seccion = document.querySelector('#productos');
 const TodosInputsRadio = document.querySelectorAll('#botonesOrdenar input');
 const ElSelect = document.querySelector('select');
 const inputNombre = document.querySelector('#inputNombreProducto');
-const inputRango = document.querySelector('#rango'); 
-const valorRango = document.querySelector('#valorRango'); 
+const inputRango = document.querySelector('#rango');
+const valorRango = document.querySelector('#valorRango');
 
 let inputSeleccionado;
 
 let categorias = [];
 crearOpcionesSelect();
+cargarRango();
 cargarProductos();
 
 // Filtrar por nombre
@@ -36,6 +37,7 @@ TodosInputsRadio.forEach(unInput => {
         cargarProductos();
     });
 });
+
 
 function cargarProductos() {
     seccion.innerHTML = "";
@@ -84,7 +86,9 @@ function cargarProductos() {
         sinProductos.className = "text-danger text-center mt-3";
         seccion.appendChild(sinProductos);
     } else {
-        productosFiltrados.forEach(producto => crearDivProducto(producto));
+        productosFiltrados.forEach(producto => {
+            crearDivProducto(producto)
+        });
     }
 }
 
@@ -145,3 +149,23 @@ function crearDivProducto(producto) {
     divCompleto.appendChild(divContenido);
     seccion.appendChild(divCompleto);
 }
+
+function cargarRango() {
+    let valorMaximo = 0;
+    productos.forEach(producto => {
+        if (valorMaximo < producto.precio)
+            valorMaximo = producto.precio;
+    });
+    inputRango.setAttribute('max', valorMaximo);
+    inputRango.value = valorMaximo;
+    valorRango.textContent = valorMaximo;
+
+}
+
+//Limpiar el input
+window.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#inputNombreProducto').value = '';
+    cargarRango();
+    cargarProductos();
+})
+
