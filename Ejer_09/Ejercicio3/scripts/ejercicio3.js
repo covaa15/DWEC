@@ -22,10 +22,9 @@ function actualizarDesplazamiento() {
     por ejemplo, la altura de la ventana (window.innerHeight). 
     Si lo es, muestra el botón; si no, ocúltalo.*/
     if (posicionActualScroll > window.innerHeight) {
-        boton.classList.add("oculto");
-
+        boton.classList.add("visible"); 
     } else {
-        boton.classList.remove("oculto");
+        boton.classList.remove("visible"); 
     }
 
 }
