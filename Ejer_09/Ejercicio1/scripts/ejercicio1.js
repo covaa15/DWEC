@@ -43,3 +43,4 @@ window.addEventListener('popstate', (event) => {
 window.addEventListener('DOMContentLoaded', function () {
     cargarContenido(ultimoEnlace);
 });
+
