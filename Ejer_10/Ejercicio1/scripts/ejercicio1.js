@@ -14,9 +14,6 @@ function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 
-
-
-
 // FUNCIONES
 
 //Cargar Mediciones
