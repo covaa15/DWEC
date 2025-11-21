@@ -1,179 +1,180 @@
 import { usuarios } from '../datos/Usuarios.js';
-const BotonSubirDatos = document.querySelector('#botonSubir');
-const BotonCargarDatos = document.querySelector('#botonCargar');
+import { uploadingInitialUsers, crearTabla, crearCeldas, crearFila, crearBotones, crearImagen, crearParrafos } from '../Funciones/funciones.js';
+//const BotonSubirDatos = document.querySelector('#botonSubir');
+const BotonUsuariosIniciales = document.querySelector('#botonCargar');
 const BotonGuardarUsuario = document.querySelector('#botonGuardar');
 const divUsuarios = document.querySelector('#usuarios');
-const InputNombre=document.querySelector('#nombre');
-const InputApellido=document.querySelector('#apellido');
-const InputEmail=document.querySelector('email');
-const InputImagen=document.querySelector('#imagen');
+const InputNombre = document.querySelector('#nombre');
+const InputApellido = document.querySelector('#apellido');
+const InputEmail = document.querySelector('#email');
+const InputImagen = document.querySelector('#imagen');
+const divMensajes = document.querySelector('#mensajes');
 let tabla;
+
 //URL
-const URL = "https://crudcrud.com/api/d3f3d9136dcc4a3180217b598b1b84e3/usuarios";
-let datosSubidos = false;
+const url = "https://crudcrud.com/api/6728ad1bcde44a4d9f51d2c6044e479b/usuarios";
+//Compruebo si hay datos cargados
+comprobarSiHayDatos();
 
 //Cargo los datos a Crud 
-BotonSubirDatos.addEventListener('click', function () {
-    uploadingInitialUsers(usuarios);
-});
-
-
-//Metodo para hacer el post de los usuarios,es decir, subo los datos a crud
-function uploadingInitialUsers(usuarios) {
-    //Creo las opciones
-    usuarios.forEach(usuario => {
-
-        const opciones = {
-            method: "POST",
-            body: JSON.stringify(usuario),
-            headers: {
-                "Content-type": "application/json"
-            }
-        }
-
-        //Realizo el fecth con las opciones que configure arriba
-        fetch(URL, opciones)
-
-            //Respuesta que me devuelve el Servidor si todo fue bien
-            .then(resultados => {
-                //Lo decodificamos con json
-                return resultados.json();
-            })
-            .then(objetoJSON => {
-
-                datosSubidos = true;
-
-                //LLamar a la funcion que dibuja porque cargo todo bien y añadir mensaje de exito
-                // displayUsers();
-                //Me va a devolverel objeto json mas la id que le asigno crud
-                // console.log(objetoJSON);
-                // arrayObjetoJSON.push(objetoJSON);
-
-            })
-            .catch(error => {
-                console.log("Error en la solicitud");
-            });
-
-    });
-
-}
-//Cargo los elementos en la tabla
-BotonCargarDatos.addEventListener('click', function () {
-    divUsuarios.innerHTML = "";
-    if (datosSubidos = true) {
-        tabla = crearTabla();
-        divUsuarios.appendChild(tabla);
-        displayUsers();
-    }
-
-    else {
-
-        const parrafo = document.createElement('p');
-        parrafo.textContent = "Los datos todavia no estan subidos";
-        divUsuarios.appendChild(parrafo);
-    }
+BotonUsuariosIniciales.addEventListener('click', function () {
+    uploadingInitialUsers(usuarios, url, displayUsers);
 
 });
 
+//Metodo que comprueba si ya hay datos cargados en crud y en el caso afirmativo los carga
+function comprobarSiHayDatos() {
 
-//Metodo para obtener los datos de crud
-function displayUsers() {
-
-    fetch(URL)
+    fetch(url)
         .then(resultados => {
             return resultados.json();
         })
         .then(objetoJSON => {
-            console.log(objetoJSON.length);
-            for (const usuario of objetoJSON) {
-                let fila = crearFila(tabla);
-                // console.log(usuario.firstName);
+            if (objetoJSON.length > 0) {
+                displayUsers();
 
+            }
+
+        });
+}
+//Metodo para obtener los datos de crud
+function displayUsers() {
+
+    //Si en crud ya hay datos, desactivo el boton para que no me deje cargar mas
+    BotonUsuariosIniciales.disabled = true;
+    fetch(url)
+        .then(resultados => {
+            return resultados.json();
+        })
+        .then(objetoJSON => {
+            //Elimino el contenido del div
+            divUsuarios.innerHTML = "";
+            //Creo la tabla en la cual voy a cargar los datos
+            tabla = crearTabla();
+            //Añado la tabla al div
+            divUsuarios.appendChild(tabla);
+            for (const usuario of objetoJSON) {
+                //Creo la fila para cada usuario
+                let fila = crearFila(tabla);
+
+                //Creo las celdas para las imagenes
                 let celda = crearCeldas();
                 crearImagen(usuario.picture, celda, fila);
 
+                //Creo las celdas para el nombre, apellidos y email del usuario
                 celda = crearCeldas();
                 crearParrafos(usuario.firstName + " " + usuario.lastName, fila, celda, "nombre");
                 crearParrafos(usuario.email, fila, celda, "email");
 
-                //console.log(usuario._id);
+                //Creo las celdas para los botones
                 celda = crearCeldas();
                 crearBotones(usuario._id, "Editar", fila, celda);
                 crearBotones(usuario._id, "Eliminar", fila, celda);
-
-                //function crearBotones(identificador, claseBoton, fila, celda)
-
-                console.log(objetoJSON);
             }
         });
 }
 
 
-//Metodo para crear la tabla
-function crearTabla() {
-    const tabla = document.createElement('table');
-    return tabla;
-}
 
-//Metodo para crear las filas
-function crearFila(tabla) {
-    const fila = document.createElement('tr');
-    tabla.appendChild(fila);
-    return fila;
-
-}
-
-//Metodo para crear las celdas
-function crearCeldas() {
-    const celda = document.createElement('td');
-    return celda;
-}
-
-//Metodo para crear los botones
-function crearBotones(identificador, claseBoton, fila, celda) {
-    const Boton = document.createElement('button');
-    console.log(identificador);
-    Boton.setAttribute('id', identificador);
-    Boton.setAttribute('class', claseBoton);
-    Boton.textContent = claseBoton;
-    celda.appendChild(Boton);
-    fila.appendChild(celda);
-}
-
-//Metodo para crear los parrafos
-function crearParrafos(texto, fila, celda, nombreClase) {
+BotonGuardarUsuario.addEventListener('click', event => {
+    event.preventDefault();
+    const esValido = validarFormulario();
     const Parrafo = document.createElement('p');
-    Parrafo.textContent = texto;
-    Parrafo.setAttribute('class', nombreClase)
-    celda.appendChild(Parrafo);
-    fila.appendChild(celda);
+    if (esValido != true) {
+        divMensajes.innerHTML = "";
+        Parrafo.textContent = "Algunos de los campos no son validos";
+        Parrafo.classList.add('mensajeError');
+
+    } else {
+        divMensajes.innerHTML = "";
+        const nuevoUsuario = [
+            {
+                "firstName": InputNombre.value,
+                "lastName": InputApellido.value,
+                "email": InputEmail.value,
+                "picture": InputImagen.value
+            }
+        ]
+        uploadingInitialUsers(nuevoUsuario, url, displayUsers);
+        Parrafo.textContent = "Usuario Añadido";
+        Parrafo.classList.add('mensajeBien');
+        limpiarInputs();
+    }
+
+    divMensajes.appendChild(Parrafo);
+
+    //Creo un array con el usuario y lo paso a la funcion de actualizar
+
+
+});
+
+function validarFormulario() {
+
+    let esValido = true;
+    const expresion = '[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}';
+    const expresionValidarEmail = new RegExp(expresion);
+
+    //Compuebo el nombre
+    if (InputNombre.value === null || InputNombre.value === "") {
+        InputNombre.classList.remove('bien');
+        InputNombre.classList.add('mal');
+        esValido = false;
+    } else {
+        InputNombre.classList.remove('mal');
+        InputNombre.classList.add('bien');
+    }
+
+    //Compuebo los apellidos
+    if (InputApellido.value === null || InputApellido.value === "") {
+        InputApellido.classList.remove('bien');
+        InputApellido.classList.add('mal');
+        esValido = false;
+    } else {
+        InputApellido.classList.remove('mal');
+        InputApellido.classList.add('bien');
+    }
+
+    //Compuebo el email
+    if (expresionValidarEmail.test(InputEmail.value) != true) {
+        InputEmail.classList.remove('bien');
+        InputEmail.classList.add('mal');
+        esValido = false;
+    } else {
+        InputEmail.classList.remove('mal');
+        InputEmail.classList.add('bien');
+    }
+
+    //Compuebo la URL
+    if (URL.canParse(InputImagen.value) != true) {
+        InputImagen.classList.remove('bien');
+        InputImagen.classList.add('mal');
+        esValido = false;
+    } else {
+        InputImagen.classList.remove('mal');
+        InputImagen.classList.add('bien');
+
+    }
+
+    return esValido;
 }
 
-//Metodos para crear la imagen
-function crearImagen(enlace, celda, fila) {
-    const Imagen = document.createElement('img');
-    Imagen.src = enlace;
-    Imagen.width = 50;
-    celda.appendChild(Imagen);
-    fila.appendChild(celda);
+
+//Compuebo si el valor del input cambia
+InputNombre.addEventListener('input', validarFormulario);
+InputApellido.addEventListener('input', validarFormulario);
+InputEmail.addEventListener('input', validarFormulario);
+InputImagen.addEventListener('input', validarFormulario);
+
+//Vacio los inputs al recargar la pagina
+document.addEventListener('DOMContentLoaded', limpiarInputs);
+
+function limpiarInputs() {
+    InputNombre.value = "";
+    InputNombre.classList.remove('bien');
+    InputEmail.value = "";
+    InputEmail.classList.remove('bien');
+    InputApellido.value = "";
+    InputApellido.classList.remove('bien');
+    InputImagen.value = "";
+    InputImagen.classList.remove('bien');
 }
-
-BotonGuardarUsuario.addEventListener('click',function(){
-
-    
-    
-        
-
-
-
-        
-
-
-
-    // const opciones = {
-    //     method: "POST",
-    //     body: JSON.stringify(usuario),
-    //     headers: {
-    //         "Content-type": "application/json"
-    //     }
-})
