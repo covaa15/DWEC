@@ -10,15 +10,17 @@ const InputEmail = document.querySelector('#email');
 const InputImagen = document.querySelector('#imagen');
 const divMensajes = document.querySelector('#mensajes');
 let tabla;
+let esNuevo = true;
+let idBotonEditar;
 
 //URL
-const url = "https://crudcrud.com/api/6728ad1bcde44a4d9f51d2c6044e479b/usuarios";
+const url = "https://crudcrud.com/api/75b0d8a44e2d41949adcad38a4c35d3d/usuarios";
 //Compruebo si hay datos cargados
 comprobarSiHayDatos();
 
 //Cargo los datos a Crud 
 BotonUsuariosIniciales.addEventListener('click', function () {
-    uploadingInitialUsers(usuarios, url, displayUsers);
+    uploadingInitialUsers(usuarios, url, displayUsers,divMensajes);
 
 });
 
@@ -70,44 +72,101 @@ function displayUsers() {
                 celda = crearCeldas();
                 crearBotones(usuario._id, "Editar", fila, celda);
                 crearBotones(usuario._id, "Eliminar", fila, celda);
+                //Llamo a la función editarUsuarios para obtener todos los botones de Editar
             }
+            editarUsuarios();
+            borrarUsuarios();
+
+        }).catch(error => {
+            divMensajes.style.display = "block";
+            divMensajes.innerHTML = `<p class="mensajeError">Error al cargar usuarios: ${error}</p>`;
+            setTimeout(() => divMensajes.style.display = "none", 2500);
+
+
         });
+
 }
 
 
-
+//Creo un nuevo usuario, lo subo al curl y lo cargo en la lista
 BotonGuardarUsuario.addEventListener('click', event => {
-    event.preventDefault();
+    //Compruebo los datos del formulario si son validos
     const esValido = validarFormulario();
-    const Parrafo = document.createElement('p');
+    event.preventDefault();
+
+    //Si es 
     if (esValido != true) {
-        divMensajes.innerHTML = "";
-        Parrafo.textContent = "Algunos de los campos no son validos";
-        Parrafo.classList.add('mensajeError');
+        divMensajes.style.display = "block";
+        divMensajes.innerHTML = `<p class="mensajeError">Los datos del formulario no son validos</p>`;
+        setTimeout(() => divMensajes.style.display = "none", 2500);
 
     } else {
-        divMensajes.innerHTML = "";
-        const nuevoUsuario = [
-            {
-                "firstName": InputNombre.value,
-                "lastName": InputApellido.value,
-                "email": InputEmail.value,
-                "picture": InputImagen.value
-            }
-        ]
-        uploadingInitialUsers(nuevoUsuario, url, displayUsers);
-        Parrafo.textContent = "Usuario Añadido";
-        Parrafo.classList.add('mensajeBien');
-        limpiarInputs();
+
+        //Compruebo si el usuario es nuevo
+        if (esNuevo === true) {
+            //Creo un array con el usuario y lo paso a la funcion de actualizar
+            const nuevoUsuario = [
+                {
+                    "firstName": InputNombre.value,
+                    "lastName": InputApellido.value,
+                    "email": InputEmail.value,
+                    "picture": InputImagen.value
+                }
+            ]
+            //Llamo al metodo en el qeu hago el POST y le paso el array de nuevo usuario
+            uploadingInitialUsers(nuevoUsuario, url, displayUsers,divMensajes);
+
+            divMensajes.style.display = "block";
+            divMensajes.innerHTML = `<p class="mensajeBien">Usuario añadido correctamente</p>`;
+            setTimeout(() => divMensajes.style.display = "none", 2500);
+ 
+            limpiarInputs();
+
+        } else {
+
+            //El usuario no es nuevo asi que obtengo los datos nuevos para el
+            const nuevosDatosUsuario = {
+                firstName: InputNombre.value,
+                lastName: InputApellido.value,
+                email: InputEmail.value,
+                picture: InputImagen.value
+            };
+
+            //Creo las opciones del put
+            const opcionesPut = {
+                method: "PUT",
+                body: JSON.stringify(nuevosDatosUsuario),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            };
+
+            //Edito el usuario
+            fetch(url + "/" + idBotonEditar, opcionesPut)
+                .then(() => {
+                    esNuevo = true;
+                    displayUsers();
+                    limpiarInputs();
+                    divMensajes.style.display = "block";
+                    divMensajes.innerHTML = `<p class="mensajeBien">Usuario editado correctamente</p>`;
+                    setTimeout(() => divMensajes.style.display = "none", 2500);
+
+
+                })
+                .catch(error => {
+                    divMensajes.style.display = "block";
+                    divMensajes.innerHTML = `<p class="mensajeError">Error al editar usuario: ${error}</p>`;
+                    setTimeout(() => divMensajes.style.display = "none", 2500);
+
+
+                });
+        }
+
     }
-
-    divMensajes.appendChild(Parrafo);
-
-    //Creo un array con el usuario y lo paso a la funcion de actualizar
-
 
 });
 
+//Valido los datos del usuario que se esta intentado añadir para comprobar que son correctos
 function validarFormulario() {
 
     let esValido = true;
@@ -168,6 +227,7 @@ InputImagen.addEventListener('input', validarFormulario);
 //Vacio los inputs al recargar la pagina
 document.addEventListener('DOMContentLoaded', limpiarInputs);
 
+//Funcion para limpiar los Inputs
 function limpiarInputs() {
     InputNombre.value = "";
     InputNombre.classList.remove('bien');
@@ -177,4 +237,82 @@ function limpiarInputs() {
     InputApellido.classList.remove('bien');
     InputImagen.value = "";
     InputImagen.classList.remove('bien');
+    esNuevo = true;
+}
+
+//Pulso el boton editar
+function editarUsuarios() {
+    document.querySelectorAll('.Editar').forEach(botonEditar => {
+
+        botonEditar.addEventListener('click', function () {
+            añadirInformacionUsuarioFormulario(botonEditar);
+            esNuevo = false;
+        })
+    });
+
+}
+
+//Añado la informacion del usuario al formulario para editarlo
+function añadirInformacionUsuarioFormulario(botonEditar) {
+    fetch(url)
+        .then(resultados => {
+            return resultados.json();
+        })
+        .then(objetoJSON => {
+            idBotonEditar = botonEditar.getAttribute('id');
+            for (const usuario of objetoJSON) {
+
+                if (usuario._id === idBotonEditar) {
+                    InputNombre.value = usuario.firstName;
+                    InputApellido.value = usuario.lastName;
+                    InputEmail.value = usuario.email;
+                    InputImagen.value = usuario.picture;
+                }
+            }
+        })
+        .catch(error => {
+            divMensajes.style.display = "block";
+            divMensajes.innerHTML = `<p class="mensajeError">Error al cargar datos del usuario: ${error}</p>`;
+            setTimeout(() => divMensajes.style.display = "none", 2500);
+
+        });
+}
+
+//Pulso el boton eliminar
+function borrarUsuarios() {
+    document.querySelectorAll('.Eliminar').forEach(botonEliminar => {
+
+        botonEliminar.addEventListener('click', function () {
+
+            let respuesta = confirm("¿Estás Seguro?");
+            if (respuesta === true) {
+
+                //Creo las opciones del Delete
+                const opcionesDelete = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                };
+
+                //Elimino el usuario
+                fetch(url + "/" + botonEliminar.getAttribute('id'), opcionesDelete)
+                    .then(() => {
+                        displayUsers();
+                        divMensajes.style.display = "block";
+                        divMensajes.innerHTML = `<p class="mensajeBien">Usuario eliminado correctamente</p>`;
+                        setTimeout(() => divMensajes.style.display = "none", 2500);
+                       
+
+                    })
+                    .catch(error => {
+                        divMensajes.style.display = "block";
+                        divMensajes.innerHTML = `<p class="mensajeError">No se pudo eliminar: ${error}</p>`;
+                        setTimeout(() => divMensajes.style.display = "none", 2500);
+                       
+                    });
+            }
+        })
+    });
+
 }

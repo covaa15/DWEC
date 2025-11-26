@@ -1,5 +1,7 @@
+let primeraVez = false;
 //Metodo para hacer el post de los usuarios,es decir, subo los datos a crud
-export function uploadingInitialUsers(usuarios,url,displayUsers) {
+export function uploadingInitialUsers(usuarios, url, displayUsers,divMensajes) {
+    
     //Creo las opciones
     usuarios.forEach(usuario => {
 
@@ -26,10 +28,19 @@ export function uploadingInitialUsers(usuarios,url,displayUsers) {
                 //Me va a devolverel objeto json mas la id que le asigno crud
                 // console.log(objetoJSON);
                 // arrayObjetoJSON.push(objetoJSON);
-
+                if (primeraVez===false) {
+                    divMensajes.style.display = "block";
+                    divMensajes.innerHTML = `<p class="mensajeBien">Usuarios cargados correctamente</p>`;
+                    primeraVez = true;
+                    setTimeout(() => divMensajes.style.display = "none", 2500);
+                   
+                }
             })
             .catch(error => {
-                console.log("Error en la solicitud" + error);
+                divMensajes.style.display = "block";
+                divMensajes.innerHTML = `<p class="mensajeError">Error al subir usuarios: ${error}</p>`;
+                setTimeout(() => divMensajes.style.display = "none", 2500);
+               
             });
 
     });
@@ -59,8 +70,9 @@ export function crearCeldas() {
 //Metodo para crear los botones
 export function crearBotones(identificador, claseBoton, fila, celda) {
     const Boton = document.createElement('button');
+    Boton.type = 'button';
     Boton.setAttribute('id', identificador);
-    Boton.setAttribute('class', claseBoton);
+    Boton.classList.add(claseBoton);
     Boton.textContent = claseBoton;
     celda.appendChild(Boton);
     fila.appendChild(celda);
