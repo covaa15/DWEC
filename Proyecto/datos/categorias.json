@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "Deportivo"
+    },
+    {
+        "id": 2,
+        "nombre": "Sedán"
+    },
+    {
+        "id": 3,
+        "nombre": "SUV"
+    },
+    {
+        "id": 4,
+        "nombre": "Eléctrico"
+    },
+    {
+        "id": 5,
+        "nombre": "Compacto"
+    },
+    {
+        "id": 6,
+        "nombre": "Pickup"
+    },
+    {
+        "id": 7,
+        "nombre": "Lujo"
+    },
+    {
+        "id": 8,
+        "nombre": "Familiar"
+    },
+    {
+        "id": 9,
+        "nombre": "Todoterreno"
+    },
+    {
+        "id": 10,
+        "nombre": "Coupé"
+    }
+]

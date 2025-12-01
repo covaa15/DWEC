@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    color: #222;
+}
+
+.header {
+    width: 100%;
+    padding: 15px 30px;
+    background: #111;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filtros {
+    display: flex;
+    gap: 15px;
+}
+
+.filtros select,
+.filtros input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+}
+
+.filtros input {
+    width: 250px;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+
+/* Productos */
+#contenedorProductos {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card img {
+    width: 200px;
+    height: auto;
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.card .precio {
+    color: #0d6efd;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.botonCaracteristicas {
+    background: #04baf6;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.botonCaracteristicas:hover {
+    background: #009ed1;
+}
+
+.botonAgregar {
+    background: #222;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.botonAgregar:hover {
+    background: #000;
+}
+
+/* Ventana Modal */
+
+.oculto {
+    display: none;
+}
+
+#modalProducto {
+    display: none; 
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+}
+
+#modalProducto.activo {
+    display: flex;
+}
+
+
+.modal {
+    background: white;
+    width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Icono de cerrar */
+#cerrarModalIcon {
+    width: 28px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.modal-flex {
+    display: flex;
+    gap: 20px;
+}
+
+.modal-flex img {
+    width: 230px;
+}
+
+.modal-info {
+    flex: 1;
+}
+
+.botones {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.precio {
+    color: #2196F3;
+    font-size: 28px;
+    font-weight: bold;
+}
+.icon-btn {
+    width: 30px;
+    cursor: pointer;
+}
+
+/* === Modales generales === */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.cerrarIcon {
+    width: 26px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.oculto {
+    display: none;
+}
+
+.modalPequeno, .modalCarritoBox {
+    background: white;
+    width: 380px;
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modalCarritoBox {
+    width: 550px;
+}
+
+.btnAzul {
+    background: #0d6efd;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btnNegro {
+    background: #222;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.tabla-carrito {
+    width: 100%;
+    text-align: center;
+}
+
+.carrito-img {
+    width: 50px;
+}
+
+.qtyBtn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.btnEliminar {
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}

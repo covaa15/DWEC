@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda de Coches</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="filtros">
+            <select id="categorias">
+                <option>Categoría</option>
+            </select>
+
+            <select id="marcas">
+                <option><u>Marca</u></option>
+            </select>
+
+            <input type="text" id="buscador" placeholder="Buscar..." />
+            <img src="./imagenes/buscar.png" id="btnBuscar" class="icon-btn">
+        </div>
+        <div class="icons">
+            <img src="./imagenes/usuario.png" id="btnUsuario" class="icon-btn">
+            <img src="./imagenes/caarrito.png" id="btnCarrito" class="icon-btn">
+        </div>
+    </header>
+
+    <!-- Ventana Ver Productos -->
+    <div id="modalProducto" class="modalOverlay oculto">
+        <div class="modal">
+            <img src="./imagenes/cerrar.png" id="cerrarModalIcon" class="cerrarIcon">
+
+            <div class="modal-flex">
+                <img id="modalImagen" src="" alt="Producto">
+                <div class="modal-info">
+                    <h2 id="modalNombre"></h2>
+                    <p id="modalDescripcion"></p>
+
+                    <p><strong>Marca:</strong> <span id="modalMarca"></span></p>
+                    <p><strong>Categoría:</strong> <span id="modalCategoria"></span></p>
+
+                    <h3 id="modalPrecio" class="precio"></h3>
+
+                    <h3>Características</h3>
+                    <ul id="modalCaracteristicas"></ul>
+
+                    <div class="botones">
+                        <button class="botonAgregar">AGREGAR AL CARRITO</button>
+                        <button id="cerrarModalBtn">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Venta Inicio Sesión-->
+    <div id="modalLogin" class="modalOverlay oculto">
+        <div class="modalPequeno">
+            <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarLogin">
+
+            <h2>Iniciar Sesión</h2>
+
+            <label>Email</label>
+            <input type="email" placeholder="email@example.com">
+
+            <label>Contraseña</label>
+            <input type="password">
+
+            <button class="btnAzul">Iniciar sesión</button>
+        </div>
+    </div>
+
+    <!--Ventana Editar Perfil -->
+    <div id="modalPerfil" class="modalOverlay oculto">
+        <div class="modalPequeno">
+            <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarPerfil">
+
+            <h2>Editar Perfil</h2>
+
+            <label>Nombre</label>
+            <input type="text" value="Ana">
+
+            <label>Apellidos</label>
+            <input type="text" value="García">
+
+            <label>Email</label>
+            <input type="email" value="ana@example.com">
+
+            <label>Teléfono</label>
+            <input type="text" value="+34600000000">
+
+            <button class="btnAzul">Guardar cambios</button>
+        </div>
+    </div>
+
+    <!-- Ventana Carrito -->
+    <div id="modalCarrito" class="modalOverlay oculto">
+        <div class="modalCarritoBox">
+            <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarCarrito">
+
+            <h3 class="tituloCarrito">El carrito está vacío</h3>
+
+            <table class="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+
+                <tbody id="carritoLista">
+                    <tr>
+                        <td><img src="./imagenes/ejemplo.png" class="carrito-img"></td>
+                        <td>SRV</td>
+                        <td>$299</td>
+                        <td>
+                            <button class="qtyBtn">-</button>
+                            <span>1</span>
+                            <button class="qtyBtn">+</button>
+                            <button class="btnEliminar">x</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="total">Total pagar: $899</h3>
+
+            <button class="btnNegro">VACIAR CARRITO</button>
+        </div>
+    </div>
+
+    <main id="contenedorProductos"></main>
+
+    <script type="module" src="./js/productos.js"></script>
+</body>
+</html>

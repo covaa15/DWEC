@@ -1,0 +1,422 @@
+[
+    {
+        "id": 1,
+        "nombre": "Mustang GT",
+        "imagen":"./imagenes/coche01.png",
+        "descripcion": "Deportivo clásico americano con motor V8 y gran rendimiento.",
+        "precio": 45000,
+        "stock": 5,
+        "marca_id": 1,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "V8 5.0",
+            "Transmisión": "Manual 6 velocidades",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 2,
+        "nombre": "Corvette Stingray",
+        "imagen": "./imagenes/coche02.png",
+        "descripcion": "Coupé deportivo de alto rendimiento con diseño aerodinámico.",
+        "precio": 62000,
+        "stock": 3,
+        "marca_id": 1,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "V8 6.2",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 3,
+        "nombre": "Toyota Corolla",
+        "imagen": "./imagenes/coche03.png",
+        "descripcion": "Compacto confiable y eficiente para uso diario.",
+        "precio": 21000,
+        "stock": 10,
+        "marca_id": 2,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "1.8 Hybrid",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 4,
+        "nombre": "Toyota Camry",
+        "imagen": "./imagenes/coche04.png",
+        "descripcion": "Sedán espacioso y cómodo con excelente eficiencia.",
+        "precio": 28000,
+        "stock": 7,
+        "marca_id": 2,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.5 Hybrid",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 5,
+        "nombre": "Honda Civic",
+        "imagen": "./imagenes/coche05.png",
+        "descripcion": "Compacto moderno con dinámica deportiva.",
+        "precio": 23000,
+        "stock": 9,
+        "marca_id": 3,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "1.5 Turbo",
+            "Transmisión": "CVT",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 6,
+        "nombre": "Honda Accord",
+        "imagen": "./imagenes/coche06.png",
+        "descripcion": "Sedán premium con excelente espacio y tecnología.",
+        "precio": 32000,
+        "stock": 6,
+        "marca_id": 3,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.0 Hybrid",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 7,
+        "nombre": "BMW M3",
+        "imagen": "./imagenes/coche07.png",
+        "descripcion": "Berlina deportiva de lujo con potencia extrema.",
+        "precio": 75000,
+        "stock": 4,
+        "marca_id": 4,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "3.0 Twin Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 8,
+        "nombre": "BMW Serie 3",
+        "imagen": "./imagenes/coche08.png",
+        "descripcion": "Sedán premium con equilibrio entre confort y desempeño.",
+        "precio": 42000,
+        "stock": 8,
+        "marca_id": 4,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.0 Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 9,
+        "nombre": "Audi A4",
+        "imagen": "./imagenes/coche09.png",
+        "descripcion": "Sedán tecnológico con diseño moderno y tracción quattro.",
+        "precio": 41000,
+        "stock": 6,
+        "marca_id": 5,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.0 TFSI",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 10,
+        "nombre": "Audi R8",
+        "imagen": "./imagenes/coche10.png",
+        "descripcion": "Superdeportivo de motor central con increíble rendimiento.",
+        "precio": 150000,
+        "stock": 2,
+        "marca_id": 5,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "V10 5.2",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 11,
+        "nombre": "Mercedes Clase C",
+        "imagen": "./imagenes/coche11.png",
+        "descripcion": "Sedán elegante con la última tecnología.",
+        "precio": 43000,
+        "stock": 7,
+        "marca_id": 6,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.0 Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 12,
+        "nombre": "Mercedes AMG GT",
+        "imagen": "./imagenes/coche12.png",
+        "descripcion": "Superdeportivo con gran agresividad y potencia.",
+        "precio": 140000,
+        "stock": 1,
+        "marca_id": 6,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "4.0 V8 Biturbo",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 13,
+        "nombre": "Jeep Wrangler",
+        "imagen": "./imagenes/coche13.png",
+        "descripcion": "Todo terreno extremo para aventuras fuera de carretera.",
+        "precio": 38000,
+        "stock": 5,
+        "marca_id": 7,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "3.6 V6",
+            "Transmisión": "Automática",
+            "Tracción": "4x4"
+        }
+    },
+    {
+        "id": 14,
+        "nombre": "Jeep Gladiator",
+        "imagen": "./imagenes/coche14.png",
+        "descripcion": "Pickup todoterreno con capacidad extrema.",
+        "precio": 45000,
+        "stock": 3,
+        "marca_id": 7,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "3.6 V6",
+            "Transmisión": "Automática",
+            "Tracción": "4x4"
+        }
+    },
+    {
+        "id": 15,
+        "nombre": "Nissan GT-R",
+        "imagen": "./imagenes/coche15.png",
+        "descripcion": "Superdeportivo japonés de alto rendimiento.",
+        "precio": 115000,
+        "stock": 2,
+        "marca_id": 8,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "3.8 V6 Twin Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 16,
+        "nombre": "Nissan Altima",
+        "imagen": "./imagenes/coche16.png",
+        "descripcion": "Sedán eficiente con tecnología moderna.",
+        "precio": 25000,
+        "stock": 8,
+        "marca_id": 8,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.5 L",
+            "Transmisión": "CVT",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 17,
+        "nombre": "Volkswagen Golf",
+        "imagen": "./imagenes/coche17.png",
+        "descripcion": "Compacto europeo con gran versatilidad.",
+        "precio": 27000,
+        "stock": 10,
+        "marca_id": 9,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "1.4 TSI",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 18,
+        "nombre": "Volkswagen Tiguan",
+        "imagen": "./imagenes/coche18.png",
+        "descripcion": "SUV familiar con gran equipamiento.",
+        "precio": 35000,
+        "stock": 6,
+        "marca_id": 9,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "2.0 TSI",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 19,
+        "nombre": "Ford Focus",
+        "imagen": "./imagenes/coche19.png",
+        "descripcion": "Hatchback versátil con conducción deportiva.",
+        "precio": 22000,
+        "stock": 9,
+        "marca_id": 10,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "1.5 EcoBoost",
+            "Transmisión": "Manual",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 20,
+        "nombre": "Ford Explorer",
+        "imagen": "./imagenes/coche20.png",
+        "descripcion": "SUV grande con tres filas y gran capacidad.",
+        "precio": 48000,
+        "stock": 4,
+        "marca_id": 10,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "3.0 EcoBoost",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 21,
+        "nombre": "Kia Sportage",
+        "imagen": "./imagenes/coche21.png",
+        "descripcion": "SUV compacto moderno y bien equipado.",
+        "precio": 29000,
+        "stock": 12,
+        "marca_id": 11,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "1.6 Hybrid",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 22,
+        "nombre": "Kia Rio",
+        "imagen": "./imagenes/coche22.png",
+        "descripcion": "Compacto económico ideal para ciudad.",
+        "precio": 18000,
+        "stock": 15,
+        "marca_id": 11,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "1.2 L",
+            "Transmisión": "Manual",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 23,
+        "nombre": "Hyundai Tucson",
+        "imagen": "./imagenes/coche23.png",
+        "descripcion": "SUV elegante y eficiente.",
+        "precio": 31000,
+        "stock": 8,
+        "marca_id": 12,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "1.6 Hybrid",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 24,
+        "nombre": "Hyundai Elantra",
+        "imagen": "./imagenes/coche24.png",
+        "descripcion": "Sedán compacto con diseño moderno.",
+        "precio": 21000,
+        "stock": 10,
+        "marca_id": 12,
+        "categoria_id": 2,
+        "caracteristicas": {
+            "Motor": "2.0 L",
+            "Transmisión": "Automática",
+            "Tracción": "Delantera"
+        }
+    },
+    {
+        "id": 25,
+        "nombre": "Porsche 911",
+        "imagen": "./imagenes/coche25.png",
+        "descripcion": "Icónico deportivo alemán de alto rendimiento.",
+        "precio": 130000,
+        "stock": 3,
+        "marca_id": 13,
+        "categoria_id": 1,
+        "caracteristicas": {
+            "Motor": "3.0 Twin Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 26,
+        "nombre": "Porsche Cayenne",
+        "imagen": "./imagenes/coche26.png",
+        "descripcion": "SUV de lujo con potencia extraordinaria.",
+        "precio": 85000,
+        "stock": 5,
+        "marca_id": 13,
+        "categoria_id": 3,
+        "caracteristicas": {
+            "Motor": "3.0 Turbo",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    },
+    {
+        "id": 27,
+        "nombre": "Tesla Model 3",
+        "imagen": "./imagenes/coche27.png",
+        "descripcion": "Sedán eléctrico con conducción autónoma.",
+        "precio": 40000,
+        "stock": 6,
+        "marca_id": 14,
+        "categoria_id": 4,
+        "caracteristicas": {
+            "Motor": "100% Eléctrico",
+            "Transmisión": "Automática",
+            "Tracción": "Trasera"
+        }
+    },
+    {
+        "id": 28,
+        "nombre": "Tesla Model X",
+        "imagen": "./imagenes/coche28.png",
+        "descripcion": "SUV eléctrico con puertas Falcon y gran autonomía.",
+        "precio": 95000,
+        "stock": 3,
+        "marca_id": 14,
+        "categoria_id": 4,
+        "caracteristicas": {
+            "Motor": "100% Eléctrico",
+            "Transmisión": "Automática",
+            "Tracción": "Integral"
+        }
+    }
+]

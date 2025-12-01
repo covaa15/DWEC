@@ -1,0 +1,153 @@
+[
+    {
+      "id": 1,
+      "nombre": "Ana",
+      "apellidos": "García",
+      "email": "ana.garcia@example.com",
+      "password": "password123",
+      "telefono": "+34600111222",
+      "direccion": {
+        "calle": "Calle Mayor 1",
+        "ciudad": "Madrid",
+        "codigo_postal": "28001",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-16T21:00:00Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Carlos",
+      "apellidos": "Ruiz Fernández",
+      "email": "carlos.ruiz@example.com",
+      "password": "passcarlos2025",
+      "telefono": "+34622111333",
+      "direccion": {
+        "calle": "Avenida del Sol 45",
+        "ciudad": "Valencia",
+        "codigo_postal": "46007",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-17T14:00:00Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Lucía",
+      "apellidos": "Martínez López",
+      "email": "lucia.martinez@example.com",
+      "password": "luciaSecure!",
+      "telefono": "+34655123456",
+      "direccion": {
+        "calle": "Calle Libertad 12",
+        "ciudad": "Barcelona",
+        "codigo_postal": "08002",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-18T10:30:00Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Javier",
+      "apellidos": "Santos Pérez",
+      "email": "javier.santos@example.com",
+      "password": "javi_2025_pass",
+      "telefono": "+34678098765",
+      "direccion": {
+        "calle": "Paseo del Río 8",
+        "ciudad": "Sevilla",
+        "codigo_postal": "41003",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-19T08:45:00Z"
+    },
+    {
+      "id": 5,
+      "nombre": "María",
+      "apellidos": "López Torres",
+      "email": "maria.lopez@example.com",
+      "password": "mariaPass2025",
+      "telefono": "+34699011223",
+      "direccion": {
+        "calle": "Calle Olivo 22",
+        "ciudad": "Zaragoza",
+        "codigo_postal": "50004",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-17T16:20:00Z"
+    },
+    {
+      "id": 6,
+      "nombre": "Diego",
+      "apellidos": "Navarro Gómez",
+      "email": "diego.navarro@example.com",
+      "password": "DNavarro*2025",
+      "telefono": "+34688112233",
+      "direccion": {
+        "calle": "Avenida Castilla 90",
+        "ciudad": "Valladolid",
+        "codigo_postal": "47010",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-20T11:10:00Z"
+    },
+    {
+      "id": 7,
+      "nombre": "Elena",
+      "apellidos": "Romero Díaz",
+      "email": "elena.romero@example.com",
+      "password": "Elena2025!",
+      "telefono": "+34677000999",
+      "direccion": {
+        "calle": "Calle Primavera 14",
+        "ciudad": "Málaga",
+        "codigo_postal": "29010",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-18T19:00:00Z"
+    },
+    {
+      "id": 8,
+      "nombre": "Sergio",
+      "apellidos": "Moreno Sánchez",
+      "email": "sergio.moreno@example.com",
+      "password": "sergioSecure2025",
+      "telefono": "+34666123456",
+      "direccion": {
+        "calle": "Calle Jardín 3",
+        "ciudad": "Bilbao",
+        "codigo_postal": "48004",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-21T09:55:00Z"
+    },
+    {
+      "id": 9,
+      "nombre": "Laura",
+      "apellidos": "Hernández Rubio",
+      "email": "laura.hernandez@example.com",
+      "password": "laura*2025*pass",
+      "telefono": "+34655110022",
+      "direccion": {
+        "calle": "Calle Norte 67",
+        "ciudad": "Alicante",
+        "codigo_postal": "03008",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-22T13:40:00Z"
+    },
+    {
+      "id": 10,
+      "nombre": "Pablo",
+      "apellidos": "Castro Molina",
+      "email": "pablo.castro@example.com",
+      "password": "PabloCastro2025",
+      "telefono": "+34688877665",
+      "direccion": {
+        "calle": "Avenida Mar 101",
+        "ciudad": "La Coruña",
+        "codigo_postal": "15002",
+        "pais": "España"
+      },
+      "fecha_actualizacion": "2025-11-23T07:50:00Z"
+    }
+  ]
+  
