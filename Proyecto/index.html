@@ -21,11 +21,20 @@
             <input type="text" id="buscador" placeholder="Buscar..." />
             <img src="./imagenes/buscar.png" id="btnBuscar" class="icon-btn">
         </div>
+
         <div class="icons">
             <img src="./imagenes/usuario.png" id="btnUsuario" class="icon-btn">
             <img src="./imagenes/caarrito.png" id="btnCarrito" class="icon-btn">
         </div>
     </header>
+
+    <!-- Panel Usuario -->
+    <div id="panelUsuario" class="panel-usuario oculto">
+        <p id="panelNombre"></p>
+        <p id="panelEmail"></p>
+        <button id="btnEditarPerfil">Editar Perfil</button>
+        <button id="btnCerrarSesionPanel">Cerrar Sesión</button>
+    </div>
 
     <!-- Ventana Ver Productos -->
     <div id="modalProducto" class="modalOverlay oculto">
@@ -55,7 +64,7 @@
         </div>
     </div>
 
-    <!--Venta Inicio Sesión-->
+    <!-- Venta Inicio Sesión -->
     <div id="modalLogin" class="modalOverlay oculto">
         <div class="modalPequeno">
             <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarLogin">
@@ -63,16 +72,16 @@
             <h2>Iniciar Sesión</h2>
 
             <label>Email</label>
-            <input type="email" placeholder="email@example.com">
-
+            <input type="email" id="loginEmail">
+            
             <label>Contraseña</label>
-            <input type="password">
-
-            <button class="btnAzul">Iniciar sesión</button>
+            <input type="password" id="loginPassword">
+            
+            <button class="btnAzul" id="btnIniciarSesion">Iniciar sesión</button>
         </div>
     </div>
 
-    <!--Ventana Editar Perfil -->
+    <!-- Ventana Editar Perfil -->
     <div id="modalPerfil" class="modalOverlay oculto">
         <div class="modalPequeno">
             <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarPerfil">
@@ -80,18 +89,18 @@
             <h2>Editar Perfil</h2>
 
             <label>Nombre</label>
-            <input type="text" value="Ana">
+            <input type="text" id="perfilNombre">
 
             <label>Apellidos</label>
-            <input type="text" value="García">
+            <input type="text" id="perfilApellidos">
 
             <label>Email</label>
-            <input type="email" value="ana@example.com">
+            <input type="email" id="perfilEmail">
 
             <label>Teléfono</label>
-            <input type="text" value="+34600000000">
+            <input type="text" id="perfilTelefono">
 
-            <button class="btnAzul">Guardar cambios</button>
+            <button class="btnAzul" id="btnGuardarPerfil">Guardar cambios</button>
         </div>
     </div>
 
@@ -112,22 +121,10 @@
                     </tr>
                 </thead>
 
-                <tbody id="carritoLista">
-                    <tr>
-                        <td><img src="./imagenes/ejemplo.png" class="carrito-img"></td>
-                        <td>SRV</td>
-                        <td>$299</td>
-                        <td>
-                            <button class="qtyBtn">-</button>
-                            <span>1</span>
-                            <button class="qtyBtn">+</button>
-                            <button class="btnEliminar">x</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="carritoLista"></tbody>
             </table>
 
-            <h3 class="total">Total pagar: $899</h3>
+            <h3 class="total">Total pagar: $0</h3>
 
             <button class="btnNegro">VACIAR CARRITO</button>
         </div>
