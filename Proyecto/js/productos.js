@@ -322,3 +322,39 @@ btnCerrarSesionPanel.addEventListener("click", () => {
 });
 
 
+//FILTOS
+
+// Obtener elementos de filtros
+const selectCategorias = document.getElementById('categorias');
+const selectMarcas = document.getElementById('marcas');
+const inputBuscador = document.getElementById('buscador');
+
+// Escuchar cambios en los selects
+selectCategorias.addEventListener('change', aplicarFiltros);
+selectMarcas.addEventListener('change', aplicarFiltros);
+inputBuscador.addEventListener('input', aplicarFiltros);
+
+// Función que aplica los filtros
+// Función para filtrar productos según selects y buscador
+function aplicarFiltros() {
+
+    const textoBuscado = buscador.value.trim().toLowerCase();
+
+    let productosFiltrados = productos;
+
+    // Filtrar por buscador si hay texto
+    if (textoBuscado !== "") {
+        productosFiltrados = productosFiltrados.filter(p =>
+            p.nombre.toLowerCase().startsWith(textoBuscado)
+        );
+    }
+
+    // Mostrar los productos filtrados
+    mostrarProductos(productosFiltrados);
+}
+
+// Escuchadores de cambio en selects y escritura en buscador
+selectCategorias.addEventListener("change", aplicarFiltros);
+selectMarcas.addEventListener("change", aplicarFiltros);
+buscador.addEventListener("input", aplicarFiltros);
+
