@@ -352,3 +352,17 @@ h3 {
     }
 }
 
+.tablaCarrito {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tablaCarrito th,
+.tablaCarrito td {
+    padding: 10px;
+    text-align: center;
+}
+
+.imgCarrito {
+    width: 60px;
+}
