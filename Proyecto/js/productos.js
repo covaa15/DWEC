@@ -1,3 +1,5 @@
+import {cargarDatos,cargarProductos} from '../funciones/funciones.js'
+
 let listaCategorias = new Map();
 let listaMarcas = new Map();
 let productos;
@@ -5,61 +7,18 @@ let productos;
 const SeccionCategorias = document.querySelector('#categorias');
 const SeccionMarcas = document.querySelector('#marcas');
 const contenedorProductos = document.querySelector("#contenedorProductos");
-
 const ventanaModalProductos = document.getElementById("modalProducto");
-
 
 // Cargar categorías y marcas
 cargarDatos("./datos/marcas.json", listaMarcas, SeccionMarcas);
 cargarDatos("./datos/categorias.json", listaCategorias, SeccionCategorias);
 
 // Cargar productos
-cargarProductos("./datos/productos.json");
+cargarProductos("./datos/productos.json",productos,mostrarProductos);
 
 
-//Carga los datos de los JSON
-function cargarDatos(ruta, lista, seccion) {
-    fetch(ruta)
-        .then(resultados => resultados.json())
-        .then(objetoJSON => {
-
-            for (const dato of objetoJSON) {
-                lista.set(dato.id, dato.nombre);
-            }
-
-            recorrerListas(lista, seccion);
-
-        })
-        .catch(error => {
-            console.log("Error al cargar datos:", error);
-        });
-}
-
-
-//Recorre las listas y agrega las opciones
-function recorrerListas(lista, seccion) {
-    lista.forEach((valor) => {
-        const opcion = document.createElement('option');
-        opcion.textContent = valor;
-        seccion.appendChild(opcion);
-    });
-}
-
-
-//Funcion que carga el JSON de Productos
-function cargarProductos(ruta) {
-    fetch(ruta)
-        .then(res => res.json())
-        .then(data => {
-            productos = data;  
-            mostrarProductos(productos);
-        })
-        .catch(error => console.log("Error al cargar productos:", error));
-}
-
-
-
-/*Esta funcion se encarga de recorrer los productos y mostrarlos por pantalla */
+/*Esta funcion se encarga de recorrer los productos y crear 
+las tarjetas con los productos */
 function mostrarProductos(productos) {
     contenedorProductos.innerHTML = "";
 
@@ -69,14 +28,16 @@ function mostrarProductos(productos) {
         card.classList.add("card");
 
         card.innerHTML = `
+        <div class="imagen">
             <img src="${producto.imagen}" alt="${producto.nombre}">
-            <h3>${producto.nombre}</h3>
-            <p><strong>Marca:</strong> ${listaMarcas.get(producto.marca_id)}</p>
-            <p><strong>Stock:</strong> ${producto.stock}</p>
-            <p class="precio">$${producto.precio}</p>
-            <button class="botonCaracteristicas">Ver Características</button>
-            <button class="botonAgregar">AGREGAR AL CARRITO</button>
-        `;
+        </div>
+        <h2>${producto.nombre}</h2>
+        <p><strong>Marca:</strong> ${listaMarcas.get(producto.marca_id)}</p>
+        <p><strong>Stock:</strong> ${producto.stock}</p>
+        <p class="precio"><strong>$${producto.precio}</strong></p>
+        <button class="botonCaracteristicas">VER CARACTERÍSTICAS</button>
+        <button class="botonAgregar">AGREGAR AL CARRITO</button>
+    `;
 
         card.dataset.id = producto.id;
 
@@ -110,7 +71,7 @@ function cargarProductoEnModal(producto) {
     document.getElementById("modalDescripcion").textContent = producto.descripcion;
     document.getElementById("modalMarca").textContent = listaMarcas.get(producto.marca_id);
     document.getElementById("modalCategoria").textContent = listaCategorias.get(producto.categoria_id);
-    document.getElementById("modalPrecio").textContent = "$" + producto.precio;
+    document.getElementById("modalPrecio").textContent = producto.precio + "$";
 
     const lista = document.getElementById("modalCaracteristicas");
     lista.innerHTML = "";
@@ -121,8 +82,6 @@ function cargarProductoEnModal(producto) {
         lista.appendChild(li);
     });
 }
-
-
 
 //Esta función controla la ventana modal de ver caracteristicas
 function controlVentanaModal(productos) {
@@ -135,7 +94,7 @@ function controlVentanaModal(productos) {
             const card = e.target.closest(".card");
             const idProducto = parseInt(card.dataset.id);
 
-            const productoSeleccionado = productos.find(p => p.id === idProducto);
+            const productoSeleccionado = productos.find(producto => producto.id === idProducto);
 
             if (productoSeleccionado) {
                 cargarProductoEnModal(productoSeleccionado);
@@ -182,8 +141,6 @@ const btnGuardarPerfil = document.getElementById("btnGuardarPerfil");
 
 
 let usuarioLogueado = false;
-
-
 
 /*Cuando pulso el boton, comprueba el estado del usuario.Si este tiene la
 sesion inicada muestra la ventana con los datos de esta, en el caso de no estar
@@ -241,7 +198,12 @@ function cargarPerfilEnFormulario(usuario) {
 }
 
 
-// Inicio de sesión
+/*Cuando pulso el boron de iniciar sesión, cargo los usuarios del 
+archivo json y comparo que el email y la contraseña que yo introduzco
+coincidan con las del json.En el caso de que si, inicio sesion y almaceno
+la sesion activa en el localstorage y me muestra un mensaje de que inicie 
+sesion, en le caso de que no coincidan las credenciales que yo meti con las
+del json me muestra un mensaje */
 btnIniciarSesion.addEventListener("click", () => {
     const email = inputEmail.value.trim();
     const password = inputPassword.value.trim();
@@ -275,7 +237,8 @@ btnIniciarSesion.addEventListener("click", () => {
 });
 
 
-// Editar perfil
+/*Cunado pulso este boton se abre la ventana modal, donde se puede ver
+el perfil del usuario que tiene la sesion iniciada en este momento */
 btnEditarPerfil.addEventListener("click", () => {
     cargarPerfilEnFormulario(usuarioActivo);
     modalPerfil.classList.remove("oculto");
@@ -283,7 +246,10 @@ btnEditarPerfil.addEventListener("click", () => {
 });
 
 
-// Guardar cambios
+/* Cuando pulso este boton, compruebo que los datos son validos,
+en el caso, de que lo sea almaceno en el localStorage la nueva información
+para este usuario.
+En el caso de que no sean validos muestro un mensaje indicandolo*/
 btnGuardarPerfil.addEventListener("click", () => {
 
     const nombre = perfilNombre.value.trim();
@@ -309,7 +275,9 @@ btnGuardarPerfil.addEventListener("click", () => {
 });
 
 
-// Cerrar sesión
+/*Cuando pulso este boton,lo que hago es cerrar la sesion del usario,
+para ello, elimino el usuario activo del localStorage y oculto la ventana
+modal*/
 btnCerrarSesionPanel.addEventListener("click", () => {
     usuarioActivo = null;
     usuarioLogueado = false;
@@ -322,8 +290,6 @@ btnCerrarSesionPanel.addEventListener("click", () => {
 });
 
 
-//FILTOS
-
 // Obtener elementos de filtros
 const selectCategorias = document.getElementById('categorias');
 const selectMarcas = document.getElementById('marcas');
@@ -334,26 +300,50 @@ selectCategorias.addEventListener('change', aplicarFiltros);
 selectMarcas.addEventListener('change', aplicarFiltros);
 inputBuscador.addEventListener('input', aplicarFiltros);
 
-// Función que aplica los filtros
-// Función para filtrar productos según selects y buscador
+/*Esta función se encarga de aplicar los diretes filtros
+a la lista de priductos, mostrando unicamente por pantalla
+los que coincidan con los filtros indicados.
+En el caso de que no exista  */
 function aplicarFiltros() {
-
-    const textoBuscado = buscador.value.trim().toLowerCase();
-
+    contenedorProductos.style.display = "grid";
+    const textoBuscado = inputBuscador.value.trim().toLowerCase();
     let productosFiltrados = productos;
 
-    // Filtrar por buscador si hay texto
-    if (textoBuscado !== "") {
-        productosFiltrados = productosFiltrados.filter(p =>
-            p.nombre.toLowerCase().startsWith(textoBuscado)
+    // Filtro por la categoría del coche
+    const categoriaSeleccionada = parseInt(selectCategorias.value);
+    if (!isNaN(categoriaSeleccionada)) {
+        productosFiltrados = productosFiltrados.filter(producto =>
+            producto.categoria_id === categoriaSeleccionada
         );
     }
 
-    // Mostrar los productos filtrados
+    // Filtro por la marca del coche
+    const marcaSeleccionada = parseInt(selectMarcas.value);
+    if (!isNaN(marcaSeleccionada)) {
+        productosFiltrados = productosFiltrados.filter(producto =>
+            producto.marca_id === marcaSeleccionada
+        );
+    }
+
+    // Filtro por nombre del coche
+    if (textoBuscado !== "") {
+        productosFiltrados = productosFiltrados.filter(producto =>
+            producto.nombre.toLowerCase().includes(textoBuscado)
+        );
+    }
+
+    // Si no hay resultados
+    if (productosFiltrados.length === 0) {
+        contenedorProductos.innerHTML = `<p class="noProductos">No se encontraron coches.</p>`;
+        contenedorProductos.style.display = "block";
+        return;
+    }
+
     mostrarProductos(productosFiltrados);
 }
 
-// Escuchadores de cambio en selects y escritura en buscador
+/*Dependiendo el elemento que este cambiando, llamo al metodo aplicarFiltros,
+para que filtre de acuerdo a lo que seleccione o escriba en el buscador */
 selectCategorias.addEventListener("change", aplicarFiltros);
 selectMarcas.addEventListener("change", aplicarFiltros);
 buscador.addEventListener("input", aplicarFiltros);
