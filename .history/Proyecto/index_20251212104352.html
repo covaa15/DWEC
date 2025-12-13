@@ -11,27 +11,20 @@
     <header>
         <div class="filtros">
             <select id="categorias">
-                <option value="">Categoría</option>
+                <option>Categoría</option>
             </select>
 
             <select id="marcas">
-                <option value="">Marca</option>
+                <option><u>Marca</u></option>
             </select>
 
             <input type="text" id="buscador" placeholder="Buscar..." />
             <img src="./imagenes/buscar.png" id="btnBuscar" class="icon-btn">
-
-            <!-- Selector de moneda -->
-            <select id="selectMoneda">
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="GBP">GBP</option>
-            </select>
         </div>
 
         <div class="icons">
             <img src="./imagenes/usuario.png" id="btnUsuario" class="icon-btn">
-            <img src="./imagenes/caarrito.png" id="btnCarrito" class="icon-btn oculto">
+            <img src="./imagenes/caarrito.png" id="btnCarrito" class="icon-btn">
         </div>
     </header>
 
@@ -43,7 +36,7 @@
         <button id="btnCerrarSesionPanel">Cerrar Sesión</button>
     </div>
 
-    <!-- Modal Producto -->
+    <!-- Ventana Ver Productos -->
     <div id="modalProducto" class="modalOverlay oculto">
         <div class="modal">
             <img src="./imagenes/cerrar.png" id="cerrarModalIcon" class="cerrarIcon">
@@ -71,7 +64,7 @@
         </div>
     </div>
 
-    <!-- Modal Login -->
+    <!-- Venta Inicio Sesión -->
     <div id="modalLogin" class="modalOverlay oculto">
         <div class="modalPequeno">
             <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarLogin">
@@ -88,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Modal Editar Perfil -->
+    <!-- Ventana Editar Perfil -->
     <div id="modalPerfil" class="modalOverlay oculto">
         <div class="modalPequeno">
             <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarPerfil">
@@ -111,7 +104,7 @@
         </div>
     </div>
 
-    <!-- Modal Carrito -->
+    <!-- Ventana Carrito -->
     <div id="modalCarrito" class="modalOverlay oculto">
         <div class="modalCarritoBox">
             <img src="./imagenes/cerrar.png" class="cerrarIcon" id="cerrarCarrito">
@@ -137,6 +130,7 @@
                 <button class="vaciarCarrito">VACIAR CARRITO</button>
                 <button class="realizarCompra">REALIZAR COMPRA</button>
             </div>
+
         </div>
     </div>
 
