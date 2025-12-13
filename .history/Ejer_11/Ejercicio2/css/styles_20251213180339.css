@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+  }
+  
+  #comments-section {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input,
+  textarea,
+  button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  small {
+    color: #666;
+  }
+  

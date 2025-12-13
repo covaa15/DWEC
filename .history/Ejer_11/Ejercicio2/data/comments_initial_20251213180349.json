@@ -1,0 +1,12 @@
+[
+  {
+    "autor": "Ana",
+    "texto": "Este es el primer comentario 😊",
+    "fecha": "2024-10-01T10:15:30.000Z"
+  },
+  {
+    "autor": "Luis",
+    "texto": "Muy interesante el ejercicio.",
+    "fecha": "2024-10-01T11:00:00.000Z"
+  }
+]

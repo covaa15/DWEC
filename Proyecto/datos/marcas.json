@@ -38,5 +38,21 @@
     {
         "id": 10,
         "nombre": "Tesla"
+    },
+    {
+        "id": 11,
+        "nombre": "Kia"
+    },
+    {
+        "id": 12,
+        "nombre": "Hyundai"
+    },
+    {
+        "id": 13,
+        "nombre": "Porsche"
+    },
+    {
+        "id": 14,
+        "nombre": "Tesla"
     }
 ]

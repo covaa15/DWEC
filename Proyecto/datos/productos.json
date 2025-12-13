@@ -276,7 +276,7 @@
         "descripcion": "Hatchback versátil con conducción deportiva.",
         "precio": 22000,
         "stock": 9,
-        "marca_id": 10,
+        "marca_id": 1,
         "categoria_id": 2,
         "caracteristicas": {
             "Motor": "1.5 EcoBoost",
@@ -291,7 +291,7 @@
         "descripcion": "SUV grande con tres filas y gran capacidad.",
         "precio": 48000,
         "stock": 4,
-        "marca_id": 10,
+        "marca_id": 1,
         "categoria_id": 3,
         "caracteristicas": {
             "Motor": "3.0 EcoBoost",

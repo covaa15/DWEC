@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
 }
 
-.header {
+header {
     width: 100%;
     padding: 15px 30px;
     background: #111;
@@ -114,13 +114,17 @@ h3 {
     color: #fff;
     display: block;
     width: 100%;
-    padding: 5%;
     margin-top: 4%;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
 }
-
+.card .botonAgregar{
+    padding: 5%;
+}
+.botones .botonAgregar{
+    padding: 2%;
+}
 .botonAgregar:hover {
     background: #000;
 }
@@ -176,7 +180,10 @@ h3 {
 }
 
 .modalCaracteristicas img {
-    width: 230px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .modal-info {
@@ -248,7 +255,23 @@ h3 {
     border: none;
 }
 
-.btnNegro {
+#botonesCarrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+.vaciarCarrito{
+    background: #222;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+.realizarCompra{
     background: #222;
     color: white;
     padding: 10px;
@@ -350,6 +373,18 @@ h3 {
     .modalCarritoBox {
         width: 90%;
     }
+
+    .modalCaracteristicas img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .modalCaracteristicas {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    
 }
 
 .tablaCarrito {

@@ -26,13 +26,3 @@ export function cargarDatos(ruta, lista, seccion) {
             console.log("Error al cargar datos:", error);
         });
 }
-//Funcion que carga el JSON de Productos
-export function cargarProductos(ruta,productos,mostrarProductos) {
-    fetch(ruta)
-        .then(res => res.json())
-        .then(data => {
-            productos = data;
-            mostrarProductos(productos);
-        })
-        .catch(error => console.log("Error al cargar productos:", error));
-}
