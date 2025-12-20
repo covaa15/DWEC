@@ -1,0 +1,86 @@
+[
+  {
+    "artistaId": "a1",
+    "escenarioId": "e6",
+    "dia": "2025-07-18",
+    "horaInicio": "22:00",
+    "duracion": 90
+  },
+  {
+    "artistaId": "a3",
+    "escenarioId": "e6",
+    "dia": "2025-07-18",
+    "horaInicio": "20:00",
+    "duracion": 90
+  },
+  {
+    "artistaId": "a2",
+    "escenarioId": "e1",
+    "dia": "2025-07-18",
+    "horaInicio": "19:00",
+    "duracion": 60
+  },
+  {
+    "artistaId": "a4",
+    "escenarioId": "e4",
+    "dia": "2025-07-18",
+    "horaInicio": "23:00",
+    "duracion": 75
+  },
+  {
+    "artistaId": "a5",
+    "escenarioId": "e5",
+    "dia": "2025-07-19",
+    "horaInicio": "18:00",
+    "duracion": 60
+  },
+  {
+    "artistaId": "a6",
+    "escenarioId": "e6",
+    "dia": "2025-07-19",
+    "horaInicio": "23:00",
+    "duracion": 120
+  },
+  {
+    "artistaId": "a7",
+    "escenarioId": "e2",
+    "dia": "2025-07-19",
+    "horaInicio": "20:00",
+    "duracion": 90
+  },
+  {
+    "artistaId": "a8",
+    "escenarioId": "e1",
+    "dia": "2025-07-19",
+    "horaInicio": "19:00",
+    "duracion": 75
+  },
+  {
+    "artistaId": "a9",
+    "escenarioId": "e3",
+    "dia": "2025-07-20",
+    "horaInicio": "17:00",
+    "duracion": 60
+  },
+  {
+    "artistaId": "a10",
+    "escenarioId": "e4",
+    "dia": "2025-07-20",
+    "horaInicio": "21:00",
+    "duracion": 90
+  },
+  {
+    "artistaId": "a11",
+    "escenarioId": "e1",
+    "dia": "2025-07-20",
+    "horaInicio": "18:00",
+    "duracion": 75
+  },
+  {
+    "artistaId": "a1",
+    "escenarioId": "e2",
+    "dia": "2025-07-20",
+    "horaInicio": "22:30",
+    "duracion": 90
+  }
+]

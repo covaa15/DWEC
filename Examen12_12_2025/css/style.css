@@ -1,0 +1,388 @@
+/* --- GENERALES Y LAYOUT --- */
+/* Este bloque define variables globales (--variable) para la paleta de colores y estilos reutilizables.
+   También establece los estilos base para la página, como la fuente y la maquetación principal de dos columnas usando Flexbox. */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ecf0f1;
+    --card-bg-color: #ffffff;
+    --text-color: #333;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --star-color: #f1c40f;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+main#dashboard {
+    flex: 3;
+    min-width: 300px;
+    padding: 1rem;
+}
+
+.right-column {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+aside#my-plan-container {
+    background-color: var(--card-bg-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+/* --- FORMULARIO DE FILTROS --- */
+/* Estilos para el formulario que permite al usuario buscar y filtrar artistas. */
+#filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background-color: var(--card-bg-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+#filter-form input[type="text"],
+#filter-form select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* --- TARJETAS DE ARTISTAS --- */
+/* Define el layout de parrilla para las tarjetas de artistas y el estilo de cada tarjeta individual,
+   incluyendo efectos visuales como sombras y animaciones al pasar el ratón. */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.artist-card {
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.artist-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.artist-card p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0.5rem 0;
+}
+
+.card-schedule-info {
+    font-size: 0.85rem;
+    color: #34495e;
+    background-color: #f8f9f9;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.card-schedule-info span {
+    display: block;
+}
+
+.card-schedule-info span:first-child {
+    font-weight: bold;
+}
+
+.artist-card button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto; /* Empuja el botón al final */
+    transition: background-color 0.2s;
+}
+
+.artist-card button:hover {
+    background-color: #2980b9;
+}
+
+/* --- SECCIÓN "MI PLAN" --- */
+/* Estilos para la lista de actuaciones que el usuario ha seleccionado.
+   Incluye el estilo de cada elemento de la lista y sus botones de acción (Eliminar, Dejar reseña). */
+#plan-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#plan-list li {
+    background-color: #f9f9f9;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-radius: 4px;
+    border-left: 5px solid var(--secondary-color);
+    position: relative;
+}
+
+#plan-list .plan-item-info strong {
+    display: block;
+    color: var(--primary-color);
+}
+
+#plan-list .plan-item-info span {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+#plan-list .plan-item-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.plan-item-actions button {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.btn-delete {
+    border-color: var(--error-color);
+    color: var(--error-color);
+    background: transparent;
+}
+.btn-review {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    background: transparent;
+}
+.btn-review:disabled {
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* --- MODAL --- */
+/* Estilos para la ventana modal que aparece superpuesta.
+   Define la capa de fondo oscura y el contenedor del contenido del modal. */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* --- FORMULARIO DE RESEÑA --- */
+/* Define los estilos para el formulario dentro del modal, incluyendo los campos de entrada,
+   los mensajes de error de validación y el sistema de calificación por estrellas. */
+#review-form .form-group {
+    margin-bottom: 1rem;
+}
+
+#review-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+#review-form input,
+#review-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#review-form button {
+    background-color: var(--success-color);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.error-message {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    height: 1rem;
+    display: block;
+}
+input:invalid, textarea:invalid {
+    border-color: var(--error-color);
+}
+
+/* Star Rating: Implementación de calificación por estrellas con inputs de radio y CSS. */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--star-color);
+}
+
+/* --- MENSAJE DE ÉXITO --- */
+/* Estilos para la notificación flotante que aparece tras enviar una reseña. */
+.success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--success-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    z-index: 1001;
+    box-shadow: var(--box-shadow);
+}
+
+
+/* --- SECCIÓN DE RESEÑAS --- */
+/* Estilos para la sección que muestra las reseñas enviadas y el formato de cada tarjeta de reseña. */
+#reviews-section {
+    background-color: var(--card-bg-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+#reviews-section h2 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    color: var(--primary-color);
+}
+
+#reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.review-card {
+    background: #f9f9f9;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid var(--secondary-color);
+}
+
+.review-card h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.review-card-rating {
+    color: var(--star-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.review-card-comment {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+
+/* --- RESPONSIVE --- */
+/* Contiene las Media Queries para adaptar el diseño a diferentes tamaños de pantalla,
+   como apilar las columnas en dispositivos móviles. */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+    .right-column {
+        margin-top: 2rem;
+        gap: 2rem;
+    }
+}

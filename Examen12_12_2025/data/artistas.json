@@ -1,0 +1,90 @@
+[
+  {
+    "id": "a1",
+    "nombre": "The Cosmic Waves",
+    "genero": "Psychedelic Rock",
+    "pais": "Reino Unido",
+    "miembros": ["Alex", "Zoe", "Sam", "Leo"],
+    "fansEstimados": 12000
+  },
+  {
+    "id": "a2",
+    "nombre": "Luna Shadow",
+    "genero": "Synth-Pop",
+    "pais": "Japón",
+    "miembros": ["Yuki"],
+    "fansEstimados": 8000
+  },
+  {
+    "id": "a3",
+    "nombre": "Blues Brothers Tribute",
+    "genero": "Blues",
+    "pais": "USA",
+    "miembros": ["Jake", "Elwood"],
+    "fansEstimados": 15000
+  },
+  {
+    "id": "a4",
+    "nombre": "Electric Dreams",
+    "genero": "Electro-Funk",
+    "pais": "Alemania",
+    "miembros": ["DJ Spark", "BassBot"],
+    "fansEstimados": 9500
+  },
+  {
+    "id": "a5",
+    "nombre": "Folkloric Echoes",
+    "genero": "Folk",
+    "pais": "Irlanda",
+    "miembros": ["Fiona", "Liam", "Aoife"],
+    "fansEstimados": 7000
+  },
+  {
+    "id": "a6",
+    "nombre": "Metal Mayhem",
+    "genero": "Heavy Metal",
+    "pais": "Suecia",
+    "miembros": ["Thor", "Odin", "Loki"],
+    "fansEstimados": 18000
+  },
+  {
+    "id": "a7",
+    "nombre": "Jazz Fusion Collective",
+    "genero": "Jazz",
+    "pais": "Francia",
+    "miembros": ["Pierre", "Marie", "Louis"],
+    "fansEstimados": 6000
+  },
+  {
+    "id": "a8",
+    "nombre": "Reggae Roots Band",
+    "genero": "Reggae",
+    "pais": "Jamaica",
+    "miembros": ["Rasta Joe", "Mama Earth"],
+    "fansEstimados": 11000
+  },
+  {
+    "id": "a9",
+    "nombre": "Classical Modern",
+    "genero": "Classical",
+    "pais": "Italia",
+    "miembros": ["Maestro Carlo"],
+    "fansEstimados": 4000
+  },
+  {
+    "id": "a10",
+    "nombre": "Hip-Hop Rhymers",
+    "genero": "Hip-Hop",
+    "pais": "USA",
+    "miembros": ["MC Flow", "Beat Master"],
+    "fansEstimados": 13000
+  },
+  {
+    "id": "a11",
+    "nombre": "Indie Pop Wonders",
+    "genero": "Indie Pop",
+    "pais": "Canada",
+    "miembros": ["Chloe", "Finn"],
+    "fansEstimados": 8500
+  }
+]

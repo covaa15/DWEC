@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival</title>     
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Encabezado principal de la aplicación -->
+    <header>
+        <h1>Mi Planifcador del Festival</h1>
+        <p>Organiza tu itinerario para el festival de música</p>
+    </header>
+
+    <!-- Contenedor principal de la aplicación: organiza el dashboard y la columna derecha -->
+    <div class="container">
+        <!-- Sección principal del dashboard: muestra el cartel del festival y los filtros -->
+        <main id="dashboard">
+            <h2>Cartel del Festival</h2>
+            <!-- Formulario de filtros para buscar y categorizar artistas -->
+            <form id="filter-form">
+                <input type="text" id="search-name" placeholder="Buscar por nombre...">
+                <select id="filter-genre">
+                    <option value="">Todos los géneros</option>
+                    <!-- Las opciones de género se cargarán aquí dinámicamente mediante JavaScript -->
+                </select>
+                <div id="filter-day" class="radio-group">
+                    <label><input type="radio" name="day" value="" checked> Todos los días</label>
+                    <!-- Las opciones de día se cargarán aquí dinámicamente mediante JavaScript -->
+                </div>
+            </form>
+            <!-- Contenedor donde se mostrarán las tarjetas de los artistas filtrados -->
+            <div id="artist-list" class="grid-container">
+                <!-- Las tarjetas de artistas se insertarán aquí por JavaScript -->
+            </div>
+        </main>
+
+        <!-- Columna lateral derecha: contiene el plan del usuario y las reseñas -->
+        <div class="right-column">
+            <!-- Sección para el plan personalizado del usuario -->
+            <aside id="my-plan-container">
+                <h3>Mi Plan</h3>
+                <!-- Lista donde se añadirán las actuaciones seleccionadas por el usuario -->
+                <ul id="plan-list">
+                    <!-- Las actuaciones añadidas aparecerán aquí por JavaScript -->
+                </ul>
+            </aside>
+            <!-- Sección para mostrar las reseñas de los artistas -->
+            <section id="reviews-section">
+                <h2>Últimas Reseñas</h2>
+                <!-- Contenedor donde se mostrarán las tarjetas de las reseñas -->
+                <div id="reviews-list">
+                    <!-- Las reseñas se insertarán aquí por JavaScript -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal para el formulario de reseña (inicialmente oculto) -->
+    <div id="review-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3 id="modal-artist-name">Dejar reseña para...</h3>
+            <!-- Formulario de reseña del artista. La validación se realiza en el cliente. -->
+            <form id="review-form" novalidate>
+                <div class="form-group">
+                    <label>Calificación:</label>
+                    <div class="star-rating">
+                        <!-- Campos de radio para la calificación por estrellas (5 a 1) -->
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comentario:</label>
+                    <textarea id="comment" name="comment" rows="4" minlength="15" required></textarea>
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message"></span>
+                </div>
+                <button type="submit">Enviar Reseña</button>
+            </form>
+        </div>
+    </div>
+    
+    
+    <!-- Mensaje de éxito temporal para confirmaciones de usuario (inicialmente oculto) -->
+    <div id="success-message" class="success-message" style="display: none;"></div>
+
+    <!-- Enlace al archivo JavaScript principal de la aplicación.
+         El atributo 'type="module"' permite usar importaciones y exportaciones de módulos. -->
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>

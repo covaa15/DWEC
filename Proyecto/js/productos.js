@@ -1,6 +1,5 @@
 import { cargarDatos } from '../funciones/funciones.js'
 
-// --- VARIABLES PRINCIPALES ---
 let listaCategorias = new Map();
 let listaMarcas = new Map();
 let productos = [];
@@ -10,9 +9,9 @@ const SeccionMarcas = document.querySelector('#marcas');
 const contenedorProductos = document.querySelector("#contenedorProductos");
 const ventanaModalProductos = document.getElementById("modalProducto");
 
-// --- VARIABLES MONEDA ---
+
 let tasasConversion = {};
-let monedaActual = "EUR"; // moneda base de la tienda
+let monedaActual = "EUR"; 
 const selectMoneda = document.getElementById("selectMoneda");
 
 // Cargar categorías y marcas
@@ -529,9 +528,7 @@ document.querySelector(".realizarCompra").addEventListener("click", () => {
 });
 
 
-// ============================================
-// ----- FUNCIONES MONEDA ---------------------
-// ============================================
+
 
 // Función para cargar tasas de cambio
 async function cargarTasas() {
@@ -546,13 +543,13 @@ async function cargarTasas() {
     }
 }
 
-// Convertir precio a la moneda seleccionada
+// Converti el  precio a la moneda seleccionada
 function convertirPrecio(precio) {
     const tasa = tasasConversion[monedaActual] || 1;
     return (precio * tasa).toFixed(2);
 }
 
-// Actualiza todos los precios visibles de productos y carrito
+// Actualizo todos los precios de los productos y del  carrito
 function actualizarPreciosProductos() {
     document.querySelectorAll(".card .precio").forEach((precioElemento) => {
         const card = precioElemento.closest(".card");
@@ -566,7 +563,7 @@ function actualizarPreciosProductos() {
     actualizarVentanaCarrito();
 }
 
-// Escuchar cambio de moneda
+// Cambio del selector  moneda
 selectMoneda.addEventListener("change", (e) => {
     monedaActual = e.target.value;
     actualizarPreciosProductos();

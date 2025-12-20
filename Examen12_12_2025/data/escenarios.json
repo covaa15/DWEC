@@ -1,0 +1,62 @@
+[
+  {
+    "id": "e1",
+    "nombre": "Solstice Stage",
+    "capacidad": 15000,
+    "ubicacion": "Zona Norte"
+  },
+  {
+    "id": "e2",
+    "nombre": "Eclipse Tent",
+    "capacidad": 5000,
+    "ubicacion": "Zona Oeste"
+  },
+  {
+    "id": "e3",
+    "nombre": "Zen Garden",
+    "capacidad": 3000,
+    "ubicacion": "Zona Sur"
+  },
+  {
+    "id": "e4",
+    "nombre": "Rave Cave",
+    "capacidad": 7000,
+    "ubicacion": "Zona Este"
+  },
+  {
+    "id": "e5",
+    "nombre": "Acoustic Alcove",
+    "capacidad": 1000,
+    "ubicacion": "Centro"
+  },
+  {
+    "id": "e6",
+    "nombre": "Main Stage",
+    "capacidad": 20000,
+    "ubicacion": "Entrada Principal"
+  },
+  {
+    "id": "e7",
+    "nombre": "Chill Zone",
+    "capacidad": 2000,
+    "ubicacion": "Junto al Lago"
+  },
+  {
+    "id": "e8",
+    "nombre": "Groove Ground",
+    "capacidad": 6000,
+    "ubicacion": "Área de Comida"
+  },
+  {
+    "id": "e9",
+    "nombre": "Tech Temple",
+    "capacidad": 4000,
+    "ubicacion": "Bosque"
+  },
+  {
+    "id": "e10",
+    "nombre": "Vibe Village",
+    "capacidad": 2500,
+    "ubicacion": "Campamento"
+  }
+]
