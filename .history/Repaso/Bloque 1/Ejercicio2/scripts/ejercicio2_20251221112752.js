@@ -1,4 +1,4 @@
-import { libros } from '../../../Datos/libros.js'
+import { libros } from 'Repaso\Bloque 1\Datos\libros.js'
 
 console.log("\n--EJERCICIO 2--")
 let titulosYAutores = libros.map((libro) => {

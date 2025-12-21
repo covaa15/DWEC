@@ -1,4 +1,4 @@
-import { libros } from '../../../Datos/libros.js'
+import {libros} from 'Datos/libros.js''
 
 console.log("--EJERCICIO 1--")
 libros.forEach(libro => {
