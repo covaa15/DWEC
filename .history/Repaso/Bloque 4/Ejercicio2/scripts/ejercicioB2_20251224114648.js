@@ -1,0 +1,16 @@
+import { tareas } from '../../../Datos/tareas.js'
+
+console.log('\n--Ejercicio B2--')
+const pendientes = tareas.filter((tarea) => {
+
+    if (tarea.completada === false)
+        return tarea;
+});
+console.log(pendientes);
+
+const tareaEspecifica = tareas.find((tarea) => {
+    if (tarea.id === 3)
+        return tarea;
+});
+
+console.log(tareaEspecifica);
