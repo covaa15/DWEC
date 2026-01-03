@@ -9,4 +9,4 @@ const tareasActualizadas = tareas.map((tarea) => {
     return tarea;
 })
 console.log("Tareas Actualizadas:");
-console.table(tareasActualizadas);
+console.log(tareasActualizadas);

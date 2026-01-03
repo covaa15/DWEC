@@ -1,0 +1,22 @@
+import { tareas } from '../../../Datos/tareas.js'
+
+console.log('\n--Ejercicio B5--');
+
+
+const descripcionesTareas = tareas.map(tarea => {
+    if (tarea.completada === true) {
+        return {
+            ...tarea,
+            urgente: true
+        };
+    }else{
+        return {
+            ...tarea,
+            urgente: false
+        };
+    }
+    
+});
+
+
+console.table(descripcionesTareas);
