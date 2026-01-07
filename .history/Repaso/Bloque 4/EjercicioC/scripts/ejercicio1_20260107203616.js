@@ -1,0 +1,1 @@
+const temperaturas = [12, 5, 32, 100, 28, 0, -5];
