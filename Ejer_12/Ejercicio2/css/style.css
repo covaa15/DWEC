@@ -1,0 +1,10 @@
+h1,h2{
+    text-decoration: underline;
+}
+
+div h1{
+    text-align: center;
+}
+fieldset{
+    margin-top: 2%;
+}
