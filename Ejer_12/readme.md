@@ -12,8 +12,9 @@
 
 <div>
      <h2>Ejercicio 3</h2>
-  <a href="https://ejercicio12-3-cova.netlify.app/">Enlace Ejercicio 2</a>
+  <a href="https://ejercicio12-3-cova.netlify.app/">Enlace Ejercici3 2</a>
 
 </div>
+
 
 
