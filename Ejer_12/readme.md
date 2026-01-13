@@ -4,3 +4,10 @@
 
 </div>
 
+<div>
+     <h2>Ejercicio 2</h2>
+  <a href="https://ejercicio12-2-cova.netlify.app/">Enlace Ejercicio 2</a>
+
+</div>
+
+
