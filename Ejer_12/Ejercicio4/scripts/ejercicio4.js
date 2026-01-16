@@ -82,7 +82,7 @@ function verPedidos(pedidosActualizado) {
 
         let div = crearDiv('hijo');
         crearP(div, "ID Pedido: " + pedido.id);
-        crearP(div, "Fecha: " + pedido.fecha);
+        crearP(div, "Fecha: " + formatearFecha(pedido.fecha));
         crearP(div, "Estado: " + pedido.estado);
         crearP(div, "Total Pedido: " + pedido.total + "€");
 
@@ -102,6 +102,12 @@ function verPedidos(pedidosActualizado) {
 
     });
 
+}
+
+//Función que formatea las fechas
+function formatearFecha(fecha) {
+    const [year, month, day] = fecha.split("-");
+    return `${day}/${month}/${year}`;
 }
 
 //Función que crea los div
