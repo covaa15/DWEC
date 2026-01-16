@@ -60,6 +60,9 @@ boton.addEventListener('click', (event) => {
         const p = document.createElement('p');
         p.textContent = "Usuario no encontrado";
         divMensaje.appendChild(p);
+        setTimeout(() => {
+            p.remove();
+        }, 1000);
         fDatosUsuario.hidden = true;
     }
 });

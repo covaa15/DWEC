@@ -1,6 +1,6 @@
 let productos = [];
 
-cargarProductos("../data/productos.json");
+cargarProductos("./data/productos.json");
 const categorias = [];
 const selector = document.querySelector("#selector");
 const contenedorPadre = document.querySelector("#padre");
@@ -8,21 +8,22 @@ const menorMayor = document.querySelector('#menorMayor');
 const mayorMenor = document.querySelector('#mayorMenor');
 
 
+let cargando = document.createElement("p");
+cargando.innerText = "Cargando…";
+contenedorPadre.appendChild(cargando);
 //Función para cargar los productos
 async function cargarProductos(ruta) {
-
-    const cargando = document.createElement("p");
-    cargando.innerText = "Cargando...";
-    document.body.appendChild(cargando);
-
     await fetch(ruta)
         .then((respuesta) => {
             return respuesta.json();
         }).then((datos) => {
             productos = datos;
-            cargando.remove();
-            verProductos(productos);
-            cargarCategorias();
+            setTimeout(() => {
+                cargando.remove();
+                verProductos(productos);
+                cargarCategorias();
+            }, 1000);
+
         })
         .catch((error) => {
             console.log(error);
