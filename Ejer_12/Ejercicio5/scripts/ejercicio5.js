@@ -1,6 +1,5 @@
-let usuarios = [], productos = [], pedidos = [], select;
-let contenedorPadre = document.querySelector("#padre");
-
+let usuarios = [], productos = [], pedidos = [], select, detalles_Pedido = [];
+let contenedorPadre = '', fieldsetDatosUsuario, fieldsetDatosPedido;
 
 //Funcion que se encarga de cargar los datos de los json
 async function cargarDatos() {
@@ -19,8 +18,7 @@ async function cargarDatos() {
         pedidos = await respuesta3.json();
         setTimeout(() => {
             cargando.remove();
-            select = crearSelect();
-            añadirOpcionesSelect(select);
+
         }, 1000);
     } catch (error) {
         console.log(error);
@@ -28,9 +26,24 @@ async function cargarDatos() {
 }
 
 await cargarDatos();
+select = crearSelect();
+añadirOpcionesSelect(select);
 
 
+//Función para cargar los detalles de los Pedidos
+async function cargarDetallesPedidos(ruta) {
 
+    fetch(ruta)
+        .then((respuesta) => {
+            return respuesta.json();
+        }).then((datos) => {
+            detalles_Pedido = datos;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+await cargarDetallesPedidos("./data/detalles_pedido.json");
 
 //Funcion para añadir las opciones al Select
 function añadirOpcionesSelect(select) {
@@ -42,37 +55,74 @@ function añadirOpcionesSelect(select) {
 
 //Cuando el select cambia se cargar los pedidos de dicho usuario
 select.addEventListener('change', function () {
-
+    if (contenedorPadre !== '')
+        contenedorPadre.innerHTML = "";
+    contenedorPadre = crearDiv("padre");
     if (select.selectedIndex !== 0) {
 
-        cargarDatosPedidoUsuario(this.value);
+        mostrarDatosPedidoUsuario(this.value);
     }
 
 });
 
+//Funcion que muestra los datos del usuario junto con sus pedidos 
+async function mostrarDatosPedidoUsuario(idUsuario) {
+    let precioTotal = 0, cont = 0;
 
+    //Recorro los datos del Usuario
+    usuarios.map((usuario) => {
 
+        if (usuario.id.toString() === idUsuario) {
+            fieldsetDatosUsuario = crearFieldset();
+            crearH2(fieldsetDatosUsuario, "Datos Usuario");
+            crearP(fieldsetDatosUsuario, `Nombre: ${usuario.nombre}`);
+            crearP(fieldsetDatosUsuario, `Email: ${usuario.email}`);
+            crearP(fieldsetDatosUsuario, `Fecha Registro: ${formatearFecha(usuario.fechaRegistro)}`);
 
-function cargarDatosPedidoUsuario(idUsuario) {
-
-
-    let usuarioSeleccionado = usuarios.filter((usuario) => {
-        if (usuario.id === idUsuario)
-            return usuario
+        }
     });
 
-    console.log(usuarioSeleccionado.length);
+    fieldsetDatosPedido = crearFieldset();
 
-    let fieldsetDatosUsuario = crearFieldset();
-    crearH2(fieldsetDatosUsuario, "Datos Usuario");
+    //Recorro los pedidos
+    pedidos.map((pedido) => {
+        if (pedido.usuarioId.toString() === idUsuario) {
+            cont++;
+            crearH2(fieldsetDatosPedido, "Datos Pedido "+cont);
+            crearP(fieldsetDatosPedido, `ID Pedido: ${pedido.id}`);
+            crearP(fieldsetDatosPedido, `Fecha: ${formatearFecha(pedido.fecha)}`);
 
-    crearP(fieldsetDatosUsuario, `Nombre: ${usuarioSeleccionado.nombre}`);
-    crearP(fieldsetDatosUsuario, `Email: ${usuarioSeleccionado.email}`);
-    crearP(fieldsetDatosUsuario, `Fecha Registro: ${usuarioSeleccionado.fechaRegistro}`);
+            detalles_Pedido.map((detalle) => {
+                if (detalle.pedidoId === pedido.id) {
+                    crearH3(fieldsetDatosPedido, "Detalles");
 
+                    let producto = productos.find((producto) => {
+                        if (detalle.productoId === producto.id)
+                            return producto;
+                    });
+
+                    precioTotal += detalle.precioUnitario * detalle.cantidad;
+
+                    crearP(fieldsetDatosPedido, `Nombre: ${producto.nombre}`);
+                    crearP(fieldsetDatosPedido, `Cantidad: ${detalle.cantidad}`);
+                    crearP(fieldsetDatosPedido, `Precio Unitario: ${detalle.precioUnitario}`);
+                    crearHr(fieldsetDatosPedido);
+
+                }
+            })
+            crearHr(fieldsetDatosPedido);
+        }
+    });
+    crearH3(fieldsetDatosPedido, "Gasto Total Pedido");
+    crearP(fieldsetDatosPedido, `Total Pedido: ${precioTotal}`);
 
 }
 
+//Función que formatea las fechas
+function formatearFecha(fecha) {
+    const [year, month, day] = fecha.split("-");
+    return `${day}/${month}/${year}`;
+}
 
 //Función que crea el select
 function crearSelect() {
@@ -92,7 +142,7 @@ function crearOpcionesSelect(select, id, texto) {
 //Función que crea el fielset
 function crearFieldset() {
     const fieldset = document.createElement('fieldset');
-    document.body.appendChild(fieldset);
+    contenedorPadre.appendChild(fieldset);
     return fieldset;
 }
 
@@ -102,6 +152,12 @@ function crearH2(fieldset, texto) {
     h2.textContent = texto;
     fieldset.appendChild(h2);
 }
+//Funcion que crea los h3
+function crearH3(fieldset, texto) {
+    const h3 = document.createElement('h3');
+    h3.textContent = texto;
+    fieldset.appendChild(h3);
+}
 
 //Función que crea los p
 function crearP(fieldset, texto) {
@@ -109,4 +165,17 @@ function crearP(fieldset, texto) {
     p.textContent = texto;
     fieldset.appendChild(p);
 }
+//Funcion que crea el div
+function crearDiv(id) {
+    const div = document.createElement('div');
+    div.id = id;
+    document.body.appendChild(div);
+    return div;
+}
 
+//Función para crear hr
+function crearHr(fieldset) {
+    const Hr = document.createElement('hr');
+    fieldset.appendChild(Hr);
+
+}
