@@ -1,0 +1,42 @@
+  /* CSS Básico para el ejemplo */
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f0f8ff; }
+        .box { 
+            background-color: #fff; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15); 
+            max-width: 450px;
+        }
+        h2 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9em; }
+        input[type="text"] { 
+            padding: 10px; 
+            margin-top: 5px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button { 
+            padding: 10px; 
+            margin-top: 15px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            border-radius: 5px;
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        .resultado { 
+            margin-top: 20px; 
+            padding: 15px; 
+            border: 1px dashed #28a745; 
+            background-color: #e6ffed; 
+            word-break: break-all; 
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        .info { font-style: italic; color: #6c757d; font-size: 0.9em;}

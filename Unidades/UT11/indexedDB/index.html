@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de IndexedDB</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="box">
+        <h2>💾 IndexedDB (Base de Datos Asíncrona)</h2>
+        <p class="info">Las operaciones son **asíncronas** y se realizan dentro de **transacciones**. <span class="warning">Abre la Consola del Navegador (F12)</span> para ver la inicialización.</p>
+        
+        <label for="idInput">ID (Clave Primaria):</label>
+        <input type="number" id="idInput" placeholder="Ej: 1 o 2" value="1">
+        
+        <label for="nombreInput">Nombre:</label>
+        <input type="text" id="nombreInput" placeholder="Ej: Libro de JS">
+        
+        <button onclick="guardarDato()">Guardar Objeto</button>
+        <button onclick="cargarDato()">Cargar Objeto por ID</button>
+        <button style="background-color: #c0392b;" onclick="eliminarDB()">Eliminar Base de Datos</button>
+        
+        <div class="resultado" id="resultadoDB">
+            Esperando conexión con IndexedDB...
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

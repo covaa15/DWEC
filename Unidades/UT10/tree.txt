@@ -1,0 +1,23 @@
+mini-tienda-modular/
+├── index.html                  → Página principal con estilos básicos y contenedor
+├── main.js                     → Punto de entrada: solo importa del barrel y arranca la app
+└── modules/                    → Todo el código modularizado
+    ├── index.js                → BARREL PRINCIPAL: re-exporta toda la API pública del proyecto
+    │
+    ├── api/
+    │   └── products.js         → Datos de productos + función getProducts() (simula API)
+    │
+    ├── cart/
+    │   ├── cart.js             → Lógica pura del carrito (estado privado + addToCart, getCart, getTotal)
+    │   └── cartUI.js           → Renderiza el carrito en el DOM y escucha el evento “cart-updated”
+    │
+    ├── ui/
+    │   ├── index.js            → BARREL DE UI: agrupa todos los componentes y funciones de renderizado
+    │   ├── render.js           → Función renderProducts() que pinta la lista de productos
+    │   └── components/
+    │       ├── ProductCard.js  → Crea la tarjeta de cada producto + botón “Añadir al carrito”
+    │       └── CartItem.js     → Crea cada línea del carrito (solo <li>)
+    │
+    └── utils/
+        ├── currency.js         → formatPrice() → formatea precios a € con 2 decimales
+        └── dom.js              → Atajos $ y $$ (equivalentes a querySelector y querySelectorAll)

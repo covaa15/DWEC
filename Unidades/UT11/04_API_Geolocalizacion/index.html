@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Geolocation API</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Ejemplo 4: Geolocation API</h1>
+        
+        <p>Esta aplicación pide permiso para acceder a tu ubicación y la muestra en un mapa. Utiliza la API de Geolocalización junto con la API de Google Maps.</p>
+
+        <fieldset>
+            <legend>Controles de Ubicación</legend>
+            <button id="obtener-ubicacion">Obtener Mi Ubicación</button>
+            <p id="estado">Estado: Esperando acción...</p>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Datos de la Ubicación</legend>
+            <div id="datos-ubicacion">
+                <ul>
+                    <li><strong>Latitud:</strong> <span id="latitud">--</span></li>
+                    <li><strong>Longitud:</strong> <span id="longitud">--</span></li>
+                    <li><strong>Precisión:</strong> <span id="precision">--</span> metros</li>
+                    <li><strong>Altitud:</strong> <span id="altitud">--</span></li>
+                    <li><strong>Velocidad:</strong> <span id="velocidad">--</span></li>
+                </ul>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Mapa</legend>
+            <!-- Este div contendrá el mapa de Google -->
+            <div id="mapa"></div>
+        </fieldset>
+
+    </div>
+
+    <!-- Script de la aplicación -->
+    <script src="script.js"></script>
+
+    <!-- 
+      Script de la API de Google Maps.
+      IMPORTANTE: Para un proyecto real, DEBES obtener tu propia clave de API (API Key) 
+      desde la Google Cloud Platform y añadirla a la URL, así:
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
+      
+      Para este ejemplo educativo, se omite la clave, lo que puede resultar en un mapa
+      con la marca "For development purposes only".
+    -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+    
+</body>
+</html>

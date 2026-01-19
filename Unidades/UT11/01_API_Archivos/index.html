@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de API de Archivos</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Ejemplo 1: API de Archivos (File API)</h1>
+        
+        <p>Esta aplicación demuestra cómo usar la API de Archivos para leer información de ficheros locales seleccionados por el usuario.</p>
+
+        <!-- Opción 1: Selector de archivos -->
+        <fieldset>
+            <legend>Opción 1: Seleccionar archivos con un botón</legend>
+            <p>Haz clic en el botón para abrir el diálogo de selección de archivos.</p>
+            <input type="file" id="selector-archivos" multiple>
+        </fieldset>
+        
+        <!-- Opción 2: Arrastrar y soltar -->
+        <fieldset>
+            <legend>Opción 2: Arrastrar y soltar archivos</legend>
+            <div id="zona-soltar">
+                <p>O arrastra y suelta archivos aquí</p>
+            </div>
+        </fieldset>
+
+        <!-- Área para mostrar la información de los archivos -->
+        <fieldset>
+            <legend>Archivos Seleccionados</legend>
+            <div id="lista-archivos">
+                <p>Aquí se mostrará la información y el contenido de los archivos...</p>
+            </div>
+        </fieldset>
+
+        <!-- Barra de progreso -->
+        <div id="contenedor-progreso">
+            <div id="barra-progreso"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

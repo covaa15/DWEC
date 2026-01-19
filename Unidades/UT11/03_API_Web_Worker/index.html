@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Web Worker API</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Ejemplo 3: Web Worker API</h1>
+        
+        <p>Esta aplicación demuestra cómo un Web Worker puede realizar una tarea pesada en segundo plano sin congelar la interfaz de usuario (UI).</p>
+
+        <fieldset>
+            <legend>Control del Worker</legend>
+            <button id="iniciar-worker">Iniciar Cálculo Pesado (en Worker)</button>
+            <p><strong>Resultado del Worker:</strong> <span id="resultado-worker">Esperando...</span></p>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Prueba de Reactividad de la UI</legend>
+            <p>Haz clic en este botón mientras el worker está calculando. Si el contador aumenta, la interfaz no está congelada.</p>
+            <button id="boton-ui">Clic aquí</button>
+            <p><strong>Contador de clics:</strong> <span id="contador-clics">0</span></p>
+        </fieldset>
+
+    </div>
+
+    <!-- El script principal que se ejecuta en el hilo principal -->
+    <script src="script.js"></script>
+</body>
+</html>

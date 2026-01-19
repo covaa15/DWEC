@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de Cookies</title>
+   <link rel="stylesheet" href="estilos.css">
+<body>
+
+    <div class="box">
+        <h2>🍪 Gestión de Cookies</h2>
+        <p class="info">La cookie 'MiDatoCookie' se guarda con una caducidad de 7 días.</p>
+        
+        <input type="text" id="cookieData" placeholder="Introduce un dato (ej: color favorito)">
+        
+        <button onclick="guardarCookie()">Guardar Cookie</button>
+        <button onclick="cargarCookie()">Cargar Cookie</button>
+        <button onclick="eliminarCookie()">Eliminar Cookie</button>
+        
+        <div class="resultado" id="resultadoCookie">
+            Resultado aquí...
+        </div>
+    </div>
+   <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de API de Arrastrar y Soltar</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Ejemplo 2: API de Arrastrar y Soltar (Drag and Drop)</h1>
+        
+        <p>Esta aplicación demuestra cómo mover elementos de un contenedor a otro usando la API de Arrastrar y Soltar. Intenta arrastrar las tareas desde la columna "Por Hacer" a la columna "Hecho".</p>
+
+        <div class="tableros-kanban">
+            <!-- Columna de origen -->
+            <div class="columna" id="columna-origen">
+                <h2>Por Hacer</h2>
+                <!-- Los elementos arrastrables tienen el atributo 'draggable="true"' -->
+                <div class="tarea" id="tarea-1" draggable="true">
+                    <p>#1 - Implementar la lógica de la API de Archivos.</p>
+                </div>
+                <div class="tarea" id="tarea-2" draggable="true">
+                    <p>#2 - Crear los estilos para el ejemplo de Drag and Drop.</p>
+                </div>
+                <div class="tarea" id="tarea-3" draggable="true">
+                    <p>#3 - Investigar sobre Web Workers.</p>
+                </div>
+                <div class="tarea" id="tarea-4" draggable="true">
+                    <p>#4 - Probar la API de Geolocalización.</p>
+                </div>
+            </div>
+
+            <!-- Columna de destino -->
+            <div class="columna" id="columna-destino">
+                <h2>Hecho</h2>
+                <!-- Esta es la zona donde se soltarán los elementos -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

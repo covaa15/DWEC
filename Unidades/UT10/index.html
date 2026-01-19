@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Tienda Modular</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .card { border: 1px solid #ddd; padding: 1rem; border-radius: 8px; }
+    button { background: #0066ff; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0050cc; }
+    #cart { margin-top: 2rem; padding: 1rem; background: #f9f9f9; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Mi Tienda Modular</h1>
+  <div id="app" class="products"></div>
+  <div id="cart">
+    <h2>Carrito (0 artículos)</h2>
+    <div id="cart-items"></div>
+    <p><strong>Total: <span id="total">0</span> €</strong></p>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

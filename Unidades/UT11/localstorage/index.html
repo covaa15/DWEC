@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de Local Storage</title>
+    <link rel="stylesheet" href="estilos.css">
+<body>
+  <div class="box">
+        <h2>📦 Almacenamiento Local (Datos Estructurados)</h2>
+        <p class="info">Guardaremos el nombre y el correo electrónico como un **único objeto JSON** bajo la clave 'DatosUsuario'.</p>
+        
+        <label for="nombreInput">Nombre:</label>
+        <input type="text" id="nombreInput" placeholder="Ej: Alex">
+        
+        <label for="emailInput">Correo Electrónico:</label>
+        <input type="text" id="emailInput" placeholder="Ej: alex@ejemplo.com">
+        
+        <button onclick="guardarLocal()">Guardar Datos (JSON)</button>
+        <button onclick="cargarLocal()">Cargar Datos</button>
+        <button style="background-color: #dc3545;" onclick="eliminarLocal()">Limpiar Local Storage</button>
+        
+        <div class="resultado" id="resultadoLocal">
+            Los datos guardados o cargados aparecerán aquí.
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
