@@ -31,6 +31,8 @@ const divPadre = crearDiv("contenedorPadre", document.body);
 
 //Muestro todos los eventos
 eventos.map((evento) => {
+    console.log(evento.fecha);
+    eventos.sort((a, b) => a.fecha - b.fecha);
     const div = crearDiv("tarjeta", divPadre);
 
 
