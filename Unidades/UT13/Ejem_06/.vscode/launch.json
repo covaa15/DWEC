@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+      "name": "Launch via npm (Nodemon)",  // Name for the debug config (appears in dropdown)
+      "type": "node",                     // Debugger type (Node.js)
+      "request": "launch",                // Launch a new process
+      "runtimeExecutable": "npm",         // Use npm as the runtime
+      "runtimeArgs": ["run-script", "dev"], // Args for npm: run the "dev" script
+    //   "port": 9229,                       // Debug port (matches --inspect default)
+      "skipFiles": ["<node_internals>/**"], // Skip Node.js internal files
+      "console": "integratedTerminal",    // Show output in VSCode's terminal
+      "restart": true                     // Auto-restart debugger if process exits
+    }
+    ]
+}
