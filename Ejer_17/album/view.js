@@ -1,6 +1,6 @@
 export function render(albumes) {
 
-    return `
+  return `
   <!DOCTYPE html>
   <html>
   <head>
@@ -11,7 +11,15 @@ export function render(albumes) {
   
   <body>
   
+  <nav class="menu">
+    <a href="/">Inicio</a>
+    <a href="/album">Álbumes</a>
+    <a href="/artista">Artistas</a>
+  </nav>
+  
   <h1>Lista de Álbumes</h1>
+  
+  <a href="/album/form">Añadir Nuevo Álbum</a>
   
   <table>
   
@@ -28,14 +36,10 @@ export function render(albumes) {
   
   <tbody>
   
-  ${albumes
-    .map(
-      (album) => `
+  ${albumes.map(album => `
   <tr>
   
-  <td>
-  <img src="${album.foto}" width="60">
-  </td>
+  <td><img src="${album.foto}" width="60"></td>
   
   <td>${album.titulo}</td>
   
@@ -43,24 +47,16 @@ export function render(albumes) {
   
   <td>${album.anio}</td>
   
-  <td>
-  <a href="/album/delete/${album.id}">eliminar</a>
-  </td>
+  <td><a href="/album/form/${album.id}">editar</a></td>
   
-  <td>
-  <a href="/album/form/${album.id}">editar</a>
-  </td>
+  <td><a href="/album/delete/${album.id}">eliminar</a></td>
   
   </tr>
-  `
-    )
-    .join('')}
+  `).join("")}
   
   </tbody>
   
   </table>
-  
-  <a href="/album/form">nuevo álbum</a>
   
   </body>
   </html>

@@ -31,7 +31,7 @@ let datos = [
   
     artista.id = parseInt(artista.id, 10);
   
-    const index = datos.findIndex((artista) => artista.id === artista.id);
+    const index = datos.findIndex((arti) => arti.id === artista.id);
   
     datos[index] = artista;
   

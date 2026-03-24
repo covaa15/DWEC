@@ -1,17 +1,22 @@
 export function render(album, artistas) {
 
-    return `
+  return `
   <!DOCTYPE html>
   <html>
   <head>
   <meta charset="UTF-8">
-  <title>Formulario álbum</title>
   <link rel="stylesheet" href="/style.css">
   </head>
   
   <body>
   
-  <h1>Formulario Álbum</h1>
+  <nav class="menu">
+    <a href="/">Inicio</a>
+    <a href="/album">Albumes</a>
+    <a href="/artista">Artistas</a>
+  </nav>
+  
+  <h1>Formulario Album</h1>
   
   <form action="/album/save" method="post">
   
@@ -31,19 +36,11 @@ export function render(album, artistas) {
   <label>Artista:</label>
   
   <select name="artistaId">
-  
-  ${artistas
-    .map(
-      (artista) => `
-  <option value="${artista.id}" ${
-        artista.id === album.artistaId ? 'selected' : ''
-      }>
-  ${artista.nombre}
+  ${artistas.map(a => `
+  <option value="${a.id}" ${a.id == album.artistaId ? 'selected' : ''}>
+  ${a.nombre}
   </option>
-  `
-    )
-    .join('')}
-  
+  `).join("")}
   </select>
   
   </div>

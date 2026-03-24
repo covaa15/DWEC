@@ -25,8 +25,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/album', albumRouter);
 app.use('/artista', artistaRouter);
 
-// Cuando entramos en / nos redirige a la lista de albunes
-app.get('/', (request, response) => response.redirect('/album'));
+// Pagina de inicio
+app.get('/', (request, response) => {
+  response.send(`
+  <html>
+  <head>
+  <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+
+  <nav class="menu">
+    <a href="/">Inicio</a>
+    <a href="/album">Álbumes</a>
+    <a href="/artista">Artistas</a>
+  </nav>
+
+  <h1>Bienvenido a la Discoteca</h1>
+
+  <a href="/album">Ver Álbumes</a><br>
+  <a href="/artista">Ver Artistas</a>
+
+  </body>
+  </html>
+  `);
+});
 
 app.listen(8080, () => {
   console.log('Servidor escuchando en http://localhost:8080');
