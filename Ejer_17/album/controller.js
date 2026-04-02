@@ -1,45 +1,39 @@
-//Ejemplo 11
-
 import { getAll, remove, get, save } from './model.js';
 import { getAll as getArtistas } from '../artista/model.js';
 import { render } from './view.js';
 import { render as form } from './form.js';
 
-// muestra la lista de albumes
+// Funcion que muestra la lista de albumes
 export async function listaAction(request, response) {
 
   const albumes = await getAll();
   const artistas = await getArtistas();
 
-  // Obtenemos el artista de cada album
+  // aqui recorro los albumes para sacar el nombre del artista en vez del id
   const datos = albumes.map((album) => {
-
     const artista = artistas.find((artista) => artista.id === album.artistaId);
-
     return {
-      ...album,
-      artistaNombre: artista ? artista.nombre : 'desconocido',
+      id: album.id,
+      titulo: album.titulo,
+      anio: album.anio,
+      foto: album.foto,
+      artistaNombre: artista ? artista.nombre : 'desconocido'
     };
-
   });
 
   const body = render(datos);
-
   response.send(body);
 }
 
-// Funcion que elimiina un album
+// Funcion para eliminar un album
 export async function eliminarAction(request, response) {
-
   const id = parseInt(request.params.id, 10);
-
   await remove(id);
-
   response.redirect(request.baseUrl);
 }
 
 // Funcion que muestra el formulario
-export async function formAction(request, response) {
+export async function formAction(request, response, errorMessage = '') {
 
   const artistas = await getArtistas();
 
@@ -48,32 +42,39 @@ export async function formAction(request, response) {
     titulo: '',
     anio: '',
     artistaId: '',
-    foto: '',
+    foto: ''
   };
 
+  // si hay id significa que estamos editando
   if (request.params.id) {
-
-    album = await get(parseInt(request.params.id, 10));
-
+    const encontrado = await get(parseInt(request.params.id, 10));
+    // solo lo asigno si existe
+    if (encontrado) {
+      album = encontrado;
+    }
   }
 
-  const body = form(album, artistas);
-
+  const body = form(album, artistas, errorMessage);
   response.send(body);
 }
 
-// Guardo los datos del formulario
+// Funcion que guarda un album
 export async function guardarAction(request, response) {
 
-  const album = {
-    id: request.body.id,
-    titulo: request.body.titulo,
-    anio: request.body.anio,
-    artistaId: parseInt(request.body.artistaId),
-    foto: request.body.foto,
-  };
+  const { id, titulo, anio, artistaId, foto } = request.body;
 
-  await save(album);
+  // validacion para que no se guarde vacio ni el titulo ni el año
+  if (!titulo || !anio) {
+    return formAction(request, response, 'Error: título y año son obligatorios');
+  }
+
+  await save({
+    id,
+    titulo,
+    anio,
+    artistaId: parseInt(artistaId),
+    foto
+  });
 
   response.redirect(request.baseUrl);
 }

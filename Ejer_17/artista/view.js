@@ -65,4 +65,3 @@ export function render(artistas) {
     </html>
     `;
     }
-    

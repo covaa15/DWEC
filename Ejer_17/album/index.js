@@ -1,23 +1,28 @@
 //Rutas
 import { Router } from 'express';
 
-import {listaAction,eliminarAction,formAction,guardarAction,} from './controller.js';
+import {
+  listaAction,
+  eliminarAction,
+  formAction,
+  guardarAction,
+} from './controller.js';
 
 const router = Router();
 
-// Ruta para mostar la lista de todos los albumes
+// Lista de los albunes
 router.get('/', listaAction);
 
-// Ruta para eliminar un album a partir de su id
+// Eliminar un albun
 router.get('/delete/:id', eliminarAction);
 
-// Ruta que muestra el formulario para crear un nuevo album
+// formulario sin id -> crear
 router.get('/form', formAction);
 
-// Ruta que muestra el formulario para editar un album
+// formulario con id -> editar
 router.get('/form/:id', formAction);
 
-// Ruta que recibe los datos del formulario y crea o actualiza el album
+// guardar datos
 router.post('/save', guardarAction);
 
 export { router };

@@ -1,82 +1,52 @@
-//Datos con los que se parte
-let datos = [
-    {
-      id: 1,
-      titulo: 'A Night at the Opera',
-      anio: '1975',
-      artistaId: 1,
-      foto: 'https://picsum.photos/id/100/150/150',
-    },
-  ];
-  
-  
-  // Esta funcion genera un nuvo id automatico
-  function getNextId() {
-  
-    return Math.max(...datos.map((album) => album.id)) + 1;
-  
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Cargo el JSON manualmente
+let datos = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/albumes.json'), 'utf-8'));
+
+// Esta funcion devuelve el siguiente id disponible
+function getNextId() {
+  return datos.length ? Math.max(...datos.map((a) => a.id)) + 1 : 1;
+}
+
+// Funcion para insertar un nuevo album
+function insertar(album) {
+  album.id = getNextId();
+  datos.push(album);
+}
+
+// Funcion para actualizar un album que ya existe
+function actualizar(album) {
+  album.id = parseInt(album.id, 10);
+  const index = datos.findIndex((a) => a.id === album.id);
+  datos[index] = album;
+}
+
+// Funcion para obtener todos los albumes
+export function getAll() {
+  return Promise.resolve(datos);
+}
+
+// Funcion para obtener un album por id
+export function get(id) {
+  return Promise.resolve(datos.find((a) => a.id === id));
+}
+
+// Funcion para eliminar un album por id
+export function remove(id) {
+  datos = datos.filter((a) => a.id !== id);
+  return Promise.resolve();
+}
+
+// Funcion que guarda el album 
+export function save(album) {
+  if (album.id === '') {
+    insertar(album);
+  } else {
+    actualizar(album);
   }
-  
-  
-  // Esta funcion inserta un nuevo albumy
-  function insertar(album) {
-  
-    album.id = getNextId();
-    datos.push(album);
-  
-  }
-  
-  
-  // Esta funcion actualiza un album ya existente
-  function actualizar(album) {
-  
-    album.id = parseInt(album.id, 10);
-    const index = datos.findIndex((a) => a.id === album.id);
-    datos[index] = album;
-  
-  }
-  
-  
-  // Esta funcion me obtiene todos los albumes
-  export function getAll() {
-  
-    return Promise.resolve(datos);
-  
-  }
-  
-  
-  // Esta funcion me devuleve un album a partir de su id
-  export function get(id) {
-  
-    return Promise.resolve(datos.find((album) => album.id === id));
-  
-  }
-  
-  
-  //Esta funcion me elimina un album a parti de su id
-  export function remove(id) {
-  
-    datos = datos.filter((album) => album.id !== id);
-  
-    return Promise.resolve();
-  
-  }
-  
-  
-  /*Esta funcion guarda el album, el el caso de que no exista
-  lo inserta  y en el caso de que exista actualiza su indformacion*/
-  export function save(album) {
-  
-    if (album.id === '') {
-  
-      insertar(album);
-  
-    } else {
-  
-      actualizar(album);
-  
-    }
-  
-    return Promise.resolve();
-  }
-  
+  return Promise.resolve();
+}

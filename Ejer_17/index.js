@@ -1,7 +1,8 @@
-//Configuro el morgan
-//Añado la linea para que detecte la carpeta public y poder usarla desde el resto de las vistas
+// Configuro el morgan y la app de express
 import express from 'express';
 import morgan from 'morgan';
+import fs from 'fs';
+import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { router as albumRouter } from './album/index.js';
@@ -12,20 +13,24 @@ const app = express();
 // Linea que hace que el codigo detecte la carpeta public
 app.use(express.static(`${dirname(fileURLToPath(import.meta.url))}/public`));
 
-// Usando morgan registro todas la peticiones
-app.use(morgan('common', { immediate: true }));
+// Usando morgan registro todas la peticiones en access.log
+const accessLogStream = fs.createWriteStream(
+  path.join(process.cwd(), 'access.log'),
+  { flags: 'a' }
+);
+app.use(morgan('common', { stream: accessLogStream }));
 
-//este middleware es para procesar formularios
-//que vienen en el body de la petición
-//al final tendremos un objeto request.body
-//con los datos del formulario parseados
+// este middleware es para procesar formularios
+// que vienen en el body de la petición
+// al final tendremos un objeto request.body
+// con los datos del formulario parseados
 app.use(express.urlencoded({ extended: false }));
 
 // rutas principales de la app
 app.use('/album', albumRouter);
 app.use('/artista', artistaRouter);
 
-// Pagina de inicio
+// Pagina de inicio 
 app.get('/', (request, response) => {
   response.send(`
   <html>
