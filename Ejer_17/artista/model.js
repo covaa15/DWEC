@@ -4,10 +4,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Cargo el JSON manualmente
+// Cargo los datos desde el JSON
 let datos = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/artistas.json'), 'utf-8'));
 
-// Esta funcion devuelve el siguiente id disponible
+// Esta funcion genera un nuevo id automaticamente
 function getNextId() {
   return datos.length ? Math.max(...datos.map((artista) => artista.id)) + 1 : 1;
 }

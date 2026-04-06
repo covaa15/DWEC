@@ -1,7 +1,7 @@
 import { getAll, remove, get, save } from './model.js';
 import { getAll as getArtistas } from '../artista/model.js';
 import { render } from './view.js';
-import { render as form } from './form.js';
+import { render as renderForm } from './form.js';
 
 // Funcion que muestra la lista de albumes
 export async function listaAction(request, response) {
@@ -33,7 +33,7 @@ export async function eliminarAction(request, response) {
 }
 
 // Funcion que muestra el formulario
-export async function formAction(request, response, errorMessage = '') {
+export async function formAction(request, response) {
 
   const artistas = await getArtistas();
 
@@ -45,27 +45,43 @@ export async function formAction(request, response, errorMessage = '') {
     foto: ''
   };
 
-  // si hay id significa que estamos editando
   if (request.params.id) {
     const encontrado = await get(parseInt(request.params.id, 10));
-    // solo lo asigno si existe
     if (encontrado) {
       album = encontrado;
     }
   }
 
-  const body = form(album, artistas, errorMessage);
+  const body = renderForm(album, artistas);
   response.send(body);
 }
+
 
 // Funcion que guarda un album
 export async function guardarAction(request, response) {
 
   const { id, titulo, anio, artistaId, foto } = request.body;
 
-  // validacion para que no se guarde vacio ni el titulo ni el año 
-  if (!titulo || !anio) {
-    return formAction(request, response, 'Error: título y año son obligatorios');
+  // validacion para que no se guarde vacio
+  if (!titulo || !anio || isNaN(anio)) {
+
+    const artistas = await getArtistas();
+  
+    let error = '';
+  
+    if (!titulo || !anio) {
+      error = 'Error: título y año son obligatorios';
+    } else if (isNaN(anio)) {
+      error = 'Error: el año debe ser numérico';
+    }
+  
+    const body = renderForm(
+      { id, titulo, anio, artistaId, foto },
+      artistas,
+      error
+    );
+  
+    return response.send(body);
   }
 
   await save({

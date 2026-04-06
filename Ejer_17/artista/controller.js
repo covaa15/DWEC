@@ -89,15 +89,43 @@ export async function formAction(request, response) {
 // Funcion que guarda un artista
 export async function guardarAction(request, response) {
 
+  const { id, nombre, pais, genero, fecha_formacion, foto } = request.body;
+
+//Compruebo para que el nombre y la fecha no puedan ser nulos
+  if (!nombre || !fecha_formacion || isNaN(fecha_formacion)) {
+
+    let error = '';
+
+    if (!nombre || !fecha_formacion) {
+      error = 'Error: nombre y año de formación son obligatorios';
+    } else if (isNaN(fecha_formacion)) {
+      error = 'Error: el año de formación debe ser numérico';
+    }
+
+    const artista = {
+      id,
+      nombre,
+      pais,
+      genero,
+      fecha_formacion,
+      foto
+    };
+
+    const body = form(artista, error);
+
+    return response.send(body);
+  }
+
   const artista = {
-    id: request.body.id,
-    nombre: request.body.nombre,
-    pais: request.body.pais,
-    genero: request.body.genero,
-    fecha_formacion: request.body.fecha_formacion,
-    foto: request.body.foto
+    id,
+    nombre,
+    pais,
+    genero,
+    fecha_formacion,
+    foto
   };
 
   await save(artista);
   response.redirect(request.baseUrl);
 }
+

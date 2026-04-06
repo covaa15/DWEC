@@ -4,10 +4,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Cargo el JSON manualmente
+// Cargo los datos desde el JSON
 let datos = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/albumes.json'), 'utf-8'));
 
-// Esta funcion devuelve el siguiente id disponible
+// Esta funcion genera un nuevo id automaticamente
 function getNextId() {
   return datos.length ? Math.max(...datos.map((a) => a.id)) + 1 : 1;
 }
@@ -20,9 +20,14 @@ function insertar(album) {
 
 // Funcion para actualizar un album que ya existe
 function actualizar(album) {
-  album.id = parseInt(album.id, 10);
-  const index = datos.findIndex((a) => a.id === album.id);
-  datos[index] = album;
+  const idNumerico = parseInt(album.id, 10);
+  const index = datos.findIndex((a) => a.id === idNumerico);
+  
+  if (index !== -1) {
+    datos[index] = { ...album, id: idNumerico };
+  } else {
+    console.error(`No se encontró el álbum con ID: ${idNumerico}`);
+  }
 }
 
 // Funcion para obtener todos los albumes

@@ -64,4 +64,4 @@ export function render(artistas) {
     </body>
     </html>
     `;
-    }
+}
