@@ -30,7 +30,7 @@ export function getAll() {
   return Promise.resolve(datos);
 }
 
-// Esta funcion devuelve un artista por su id
+// Esta funcion devuelve un artista por su id 
 export function get(id) {
   return Promise.resolve(datos.find((artista) => artista.id === id));
 }

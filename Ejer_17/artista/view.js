@@ -16,7 +16,7 @@ export function render(artistas) {
       <a href="/artista">Artistas</a>
     </nav>
     <h1>Lista de Artistas</h1>
-    
+     
     <a href="/artista/form">nuevo artista</a>
     
     <table>

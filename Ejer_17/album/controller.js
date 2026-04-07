@@ -57,7 +57,7 @@ export async function formAction(request, response) {
 }
 
 
-// Funcion que guarda un album
+// Funcion que guarda un album 
 export async function guardarAction(request, response) {
 
   const { id, titulo, anio, artistaId, foto } = request.body;

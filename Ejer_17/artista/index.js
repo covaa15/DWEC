@@ -6,7 +6,7 @@ const router = Router();
 
 // Ruta para mostrar la lista de artistas
 router.get('/', listaAction);
-
+ 
 // Ruta para mostrar el formulario para crear artista
 router.get('/form', formAction);
 

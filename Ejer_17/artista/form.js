@@ -8,7 +8,7 @@ export function render(artista) {
     <title>Formulario artista</title>
     <link rel="stylesheet" href="/style.css">
     </head>
-  
+   
     <body>
     <nav class="menu">
     <a href="/">Inicio</a>

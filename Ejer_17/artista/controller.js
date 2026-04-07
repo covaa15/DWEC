@@ -77,7 +77,7 @@ export async function formAction(request, response) {
     foto: ''
   };
 
-  // si hay id estamos editando
+  // si hay id estamos editando 
   if (request.params.id) {
     artista = await get(parseInt(request.params.id, 10));
   }

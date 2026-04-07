@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Cargo los datos desde el JSON
+// Cargo los datos desde el JSON 
 let datos = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/albumes.json'), 'utf-8'));
 
 // Esta funcion genera un nuevo id automaticamente
