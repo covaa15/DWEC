@@ -10,8 +10,14 @@ export function render(artistas) {
     </head>
     
     <body>
-    
+        <nav class="menu">
+      <a href="/">Inicio</a>
+      <a href="/album">Álbumes</a>
+      <a href="/artista">Artistas</a>
+    </nav>
     <h1>Lista de Artistas</h1>
+    
+    <a href="/artista/form">nuevo artista</a>
     
     <table>
     
@@ -58,8 +64,6 @@ export function render(artistas) {
     </tbody>
     
     </table>
-    
-    <a href="/artista/form">nuevo artista</a>
     
     </body>
     </html>

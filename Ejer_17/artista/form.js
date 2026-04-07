@@ -10,7 +10,11 @@ export function render(artista) {
     </head>
   
     <body>
-  
+    <nav class="menu">
+    <a href="/">Inicio</a>
+    <a href="/album">Álbumes</a>
+    <a href="/artista">Artistas</a>
+  </nav>
     <h1>Formulario Artista</h1>
   
     <form action="/artista/save" method="post">

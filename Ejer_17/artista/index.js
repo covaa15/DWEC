@@ -17,7 +17,7 @@ router.get('/form/:id', formAction);
 router.get('/delete/:id', eliminarAction);
 
 //Ruta para ver el detalle de un artista
-router.get('/:id', detalleAction);
+router.get('/detalle/:id', detalleAction);
 
 // Ruta que recibe los datos del formulario y crea o actualiza el artista
 router.post('/save', guardarAction);
