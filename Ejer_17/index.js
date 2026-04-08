@@ -58,3 +58,6 @@ app.get('/', (request, response) => {
 app.listen(8080, () => {
   console.log('Servidor escuchando en http://localhost:8080');
 });
+
+//Para que vercel maneje la rutas
+module.exports = app;
