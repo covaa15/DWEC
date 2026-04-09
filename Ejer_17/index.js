@@ -13,12 +13,22 @@ const app = express();
 // Linea que hace que el codigo detecte la carpeta public
 app.use(express.static(`${dirname(fileURLToPath(import.meta.url))}/public`));
 
-// Usando morgan registro todas la peticiones en access.log
-const accessLogStream = fs.createWriteStream(
-  path.join(process.cwd(), 'access.log'),
-  { flags: 'a' }
-);
-app.use(morgan('common', { stream: accessLogStream }));
+/* Vercel no me permite crear el archivo access.log mientras se ejecuta la app,
+por eso para evitar el erro que me daba, busque como solucionarlo y me daba esta
+solucion, que consiste, en crear el archivo access.log, solo si la app no se ejecuta 
+desde vercel*/
+if (process.env.NODE_ENV !== 'production') {
+  //Si no ejecutamos la app desde vercel creo el archivo acces.log
+  const accessLogStream = fs.createWriteStream(
+      path.join(process.cwd(), 'access.log'),
+      { flags: 'a' }
+  );
+  app.use(morgan('common', { stream: accessLogStream }));
+} else {
+  // En Vercel, usamos la consola estandar para que no falle
+  app.use(morgan('common'));
+}
+
 
 // este middleware es para procesar formularios
 // que vienen en el body de la petición
@@ -60,4 +70,4 @@ app.listen(8080, () => {
 });
 
 //Para que vercel maneje la rutas
-module.exports = app;
+export default app;
