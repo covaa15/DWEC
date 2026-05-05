@@ -13,7 +13,6 @@ export function render(album, artistas, error = '') {
   <nav class="menu">
     <a href="/">Inicio</a>
     <a href="/album">Álbumes</a>
-    <a href="/artista">Artistas</a>
   </nav>
 
   <h1>Formulario Álbum</h1>
@@ -32,17 +31,6 @@ export function render(album, artistas, error = '') {
     <div>
       <label>Año:</label>
       <input type="text" name="anio" value="${album.anio}">
-    </div>
-
-    <div>
-      <label>Artista:</label>
-      <select name="artistaId">
-        ${artistas.map(artista => `
-          <option value="${artista.id}" ${artista.id == album.artistaId ? 'selected' : ''}>
-            ${artista.nombre}
-          </option>
-        `).join("")}
-      </select>
     </div>
 
     <div>

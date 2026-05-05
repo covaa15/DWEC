@@ -5,7 +5,7 @@ import { conexionBD } from '../db.js';
 export async function crearPrestamo(datos) {
   await conexionBD.query(`
     INSERT INTO prestamos 
-    (libro_id, nombre_prestario, fecha_prestamo, fecha_devolucion)
+    (libro_id, nombre_prestatario, fecha_prestamo, fecha_devolucion)
     VALUES (?, ?, ?, ?)
   `, [
     datos.libro_id,
@@ -30,21 +30,10 @@ export async function obtenerPrestamosPorUsuario(nombre) {
     SELECT l.*, p.fecha_devolucion
     FROM prestamos p
     INNER JOIN libros l ON l.id = p.libro_id
-    WHERE p.nombre_prestario=? AND p.fecha_entrega IS NULL
+    WHERE p.nombre_prestatario=? AND p.fecha_entrega IS NULL
   `, [nombre]);
 
   return filas;
 }
 
-// Obtento los libros que ya estan vencidos
-export async function obtenerLibrosVencidos() {
-  const [filas] = await conexionBD.query(`
-    SELECT l.*, p.fecha_devolucion
-    FROM prestamos p
-    INNER JOIN libros l ON l.id = p.libro_id
-    WHERE p.fecha_devolucion < CURDATE()
-    AND p.fecha_entrega IS NULL
-  `);
 
-  return filas;
-}

@@ -54,29 +54,25 @@ export function vistaPrestados(libros) {
   <h1>Libros prestados</h1>
 
   <table>
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Autor</th>
-        <th>Usuario</th>
-        <th>Fecha devolución</th>
-      </tr>
-    </thead>
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Usuario</th>
+      <th>Fecha devolución</th>
+    </tr>
 
-    <tbody>
-      ${libros.map(libro => `
-        <tr>
-          <td>${libro.titulo}</td>
-          <td>${libro.autor}</td>
-          <td>
-            <a href="/prestamo/usuario?nombre=${libro.nombre_prestario}">
-              ${libro.nombre_prestario}
-            </a>
-          </td>
-          <td>${new Date(libro.fecha_devolucion).toLocaleDateString()}</td>
-        </tr>
-      `).join('')}
-    </tbody>
+    ${libros.map(libro => `
+      <tr>
+        <td>${libro.titulo}</td>
+        <td>${libro.autor}</td>
+        <td>
+          <a href="/prestamos/usuario?nombre=${libro.nombre_prestatario}">
+            ${libro.nombre_prestatario}
+          </a>
+        </td>
+        <td>${new Date(libro.fecha_devolucion).toLocaleDateString()}</td>
+      </tr>
+    `).join('')}
   </table>
 
   </body>
@@ -85,8 +81,12 @@ export function vistaPrestados(libros) {
 }
 
 
+
 // Vista detalle libro
 export function vistaDetalle(libro, historial) {
+
+  const prestamoActivo = historial.find(p => !p.fecha_entrega);
+
   return `
   <html>
   <head>
@@ -107,8 +107,12 @@ export function vistaDetalle(libro, historial) {
 
   ${
     libro.estado === 'Disponible'
-      ? `<a href="/prestamo/formulario/${libro.id}">Prestar libro</a>`
-      : `<a href="/prestamo/devolver/${libro.id}">Registrar devolución</a>`
+      ? `<a href="/prestamos/formulario/${libro.id}">Prestar libro</a>`
+      : `
+        <p><strong>Prestado a:</strong> ${prestamoActivo?.nombre_prestatario}</p>
+        <p><strong>Devuelve el:</strong> ${new Date(prestamoActivo?.fecha_devolucion).toLocaleDateString()}</p>
+        <a href="/prestamos/devolver/${libro.id}">Registrar devolución</a>
+      `
   }
 
   <h2>Historial de préstamos</h2>
@@ -116,7 +120,7 @@ export function vistaDetalle(libro, historial) {
   <ul>
     ${historial.map(p => `
       <li>
-        ${p.nombre_prestario} -
+        ${p.nombre_prestatario} -
         ${new Date(p.fecha_prestamo).toLocaleDateString()} →
         ${new Date(p.fecha_devolucion).toLocaleDateString()}
       </li>

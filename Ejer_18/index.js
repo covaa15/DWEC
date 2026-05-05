@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Rutas
 app.use('/', libroRouter);
-app.use('/prestamo', prestamoRouter);
+app.use('/prestamos', prestamoRouter);
 
 //Voy a inicio
 app.get('/', (req, res) => res.redirect('/libros'));

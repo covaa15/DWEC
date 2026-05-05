@@ -17,6 +17,7 @@ export async function mostrarLibrosPrestados(req, res) {
 // Obtengo los detalles de un libro y los muestro
 export async function mostrarDetalleLibro(req, res) {
   const libro = await modelo.obtenerLibroPorId(req.params.id);
+
   const [historial] = await conexionBD.query(
     'SELECT * FROM prestamos WHERE libro_id=?',
     [req.params.id]

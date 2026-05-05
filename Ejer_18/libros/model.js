@@ -26,7 +26,7 @@ export async function actualizarEstadoLibro(id, estado) {
 // Obtengo los libros prestados
 export async function obtenerLibrosPrestados() {
   const [filas] = await conexionBD.query(`
-    SELECT l.*, p.nombre_prestario, p.fecha_devolucion
+    SELECT l.*, p.nombre_prestatario, p.fecha_devolucion
     FROM libros l
     INNER JOIN prestamos p ON l.id = p.libro_id
     WHERE l.estado='Prestado' AND p.fecha_entrega IS NULL
@@ -41,7 +41,7 @@ export async function obtenerLibrosVencidos() {
     SELECT l.*, p.fecha_devolucion
     FROM libros l
     JOIN prestamos p ON l.id = p.libro_id
-    WHERE p.fecha_devolucion < NOW()
+    WHERE p.fecha_devolucion < CURDATE()
       AND p.fecha_entrega IS NULL
   `);
 

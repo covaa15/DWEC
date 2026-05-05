@@ -13,12 +13,11 @@ export async function mostrarFormularioPrestamo(req, res) {
 
     <nav class="menu">
       <a href="/libros">Inicio</a>
-      <a href="/prestados">Prestados</a>
     </nav>
 
     <h1>Nuevo préstamo</h1>
 
-    <form method="POST" action="/prestamo/nuevo">
+    <form method="POST" action="/prestamos/nuevo">
 
       <input type="hidden" name="libro_id" value="${req.params.libro_id}">
 
@@ -43,14 +42,9 @@ export async function crearPrestamo(req, res) {
     nombre: req.body.nombre,
     fecha_prestamo: new Date(),
     fecha_devolucion: req.body.fecha_devolucion
-
   });
 
-  // Cambio el estado del libro
-  await modeloLibros.actualizarEstadoLibro(
-    req.body.libro_id,
-    'Prestado'
-  );
+  await modeloLibros.actualizarEstadoLibro(req.body.libro_id, 'Prestado');
 
   res.redirect(`/libro/${req.body.libro_id}`);
 }
@@ -59,10 +53,7 @@ export async function crearPrestamo(req, res) {
 export async function registrarDevolucion(req, res) {
   await modelo.registrarDevolucion(req.params.libro_id);
 
-  await modeloLibros.actualizarEstadoLibro(
-    req.params.libro_id,
-    'Disponible'
-  );
+  await modeloLibros.actualizarEstadoLibro(req.params.libro_id, 'Disponible');
 
   res.redirect(`/libro/${req.params.libro_id}`);
 }
@@ -80,10 +71,9 @@ export async function mostrarPrestamosUsuario(req, res) {
 
     <nav class="menu">
       <a href="/libros">Inicio</a>
-      <a href="/prestados">Prestados</a>
     </nav>
 
-    <h1>Libros de ${req.query.nombre}</h1>
+    <h1>Libros prestados a ${req.query.nombre}</h1>
 
     ${datos.map(libro => `
       <p>${libro.titulo} - ${new Date(libro.fecha_devolucion).toLocaleDateString()}</p>
@@ -95,17 +85,3 @@ export async function mostrarPrestamosUsuario(req, res) {
 }
 
 
-
-
-// Funcion que muestra todos libros que estan vencidos
-export async function mostrarLibrosVencidos(req, res) {
-  const datos = await modelo.obtenerLibrosVencidos();
-
-  res.send(`
-    <h1>Libros vencidos</h1>
-
-    ${datos.map(libro => `
-      <p>${libro.titulo}</p>
-    `).join('')}
-  `);
-}

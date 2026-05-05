@@ -1,6 +1,5 @@
 
 import { Router } from 'express';
-
 import {mostrarLibros,mostrarLibrosPrestados,mostrarDetalleLibro,mostrarLibrosVencidos} from './controller.js';
 
 const router = Router();
