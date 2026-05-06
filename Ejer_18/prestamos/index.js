@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import {mostrarFormularioPrestamo,crearPrestamo,registrarDevolucion,mostrarPrestamosUsuario} from './controller.js';
 import {mostrarLibrosVencidos} from '../libros/controller.js';
 

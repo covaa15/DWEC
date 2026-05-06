@@ -34,7 +34,6 @@ export async function obtenerLibrosPrestados() {
 
   return filas;
 }
-
 //Obtengo los libros vencidos
 export async function obtenerLibrosVencidos() {
   const [rows] = await conexionBD.query(`
