@@ -1,31 +1,51 @@
 import { conexionBD } from '../db.js';
-import crypto from 'crypto';
 
-// FUncion para crear un usuario nuevo
-export async function crearUsuario(username, password, email, photo) {
+// Crear usuario
+export async function crearUsuario(datos) {
 
-  // Encripto la contraseña
-  const pass = crypto.createHash('md5').update(password).digest('hex');
-
-  await conexionBD.query(
-    'INSERT INTO users (username,password,email,photo) VALUES (?,?,?,?)',
-    [username, pass, email, photo]
-  );
+  await conexionBD.query(`
+    INSERT INTO users (username, password, bio, email, photo) VALUES (?, MD5(?), ?, ?, ?)
+  `, [datos.username,datos.password,datos.bio,datos.email,datos.photo]);
 }
 
-// Funcion que obtiene un usuario por username
+// Login
+export async function login(username, password) {
+
+  const [filas] = await conexionBD.query(`
+    SELECT * FROM users WHERE username=? AND password=MD5(?)
+  `, [username, password]);
+
+  return filas[0];
+}
+
+// Obtener usuario por username
 export async function obtenerUsuario(username) {
-  const [rows] = await conexionBD.query(
-    'SELECT * FROM users WHERE username=?',
-    [username]
-  );
-  return rows[0];
+
+  const [filas] = await conexionBD.query(`
+    SELECT * FROM users WHERE username=?
+  `, [username]);
+
+  return filas[0];
 }
 
-// Funcion que actualiza el perfil 
-export async function actualizarPerfil(id, bio, email, photo) {
-  await conexionBD.query(
-    'UPDATE users SET bio=?, email=?, photo=? WHERE id=?',
-    [bio, email, photo, id]
-  );
+// Obtener usuario por id
+export async function obtenerUsuarioPorId(id) {
+
+  const [filas] = await conexionBD.query(`
+    SELECT * FROM users WHERE id=?
+  `, [id]);
+
+  return filas[0];
+}
+
+// Actualizar perfil
+export async function actualizarPerfil(id, bio, email) {
+
+  await conexionBD.query(`
+    UPDATE users SET bio=?, email=? WHERE id=? `, [bio, email, id]);
+}
+
+export async function obtenerTodosLosUsuarios() {
+  const [filas] = await conexionBD.query('SELECT username FROM users');
+  return filas;
 }

@@ -1,38 +1,135 @@
-//Funcin que muestra el portforlio
-export function vistaPortfolio(user, proyectos, links, esPropietario) {
-
+export function vistaRegister(error = '') {
   return `
-  <h1>${user.username}</h1>
+  <html>
+    <head>
+      <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+      <div class="container">
+        <form method="POST" action="/register">
+          <h1>Register</h1>
+          ${error ? `<p class="error">${error}</p>` : ''}
+          
+          <div>
+            <label>Username:</label>
+            <input name="username" required>
+          </div>
 
-  <img src="${user.photo || 'https://via.placeholder.com/150'}" width="120">
+          <div>
+            <label>Email:</label>
+            <input name="email" type="email" required>
+          </div>
 
-  <p>${user.bio}</p>
-  <p>${user.email}</p>
+          <div>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+          </div>
 
-  ${esPropietario ? `<a href="/dashboard">Gestionar</a>` : ''}
+          <div>
+            <label>URL Foto:</label>
+            <input name="photo">
+          </div>
 
-  <h2>Proyectos</h2>
-  ${proyectos.map(p => `<p>${p.title}</p>`).join('')}
+          <div>
+            <label>Biografía:</label>
+            <textarea name="bio"></textarea>
+          </div>
 
-  <h2>Links</h2>
-  ${links.map(l => `<p>${l.platform}</p>`).join('')}
+          <button type="submit">Register</button>
+          <div style="margin-top:15px">
+            <a href="/login">¿Ya tienes cuenta? Login</a>
+          </div>
+        </form>
+      </div>
+    </body>
+  </html>
   `;
 }
 
-// Funcion que muestra dashboard
-export function vistaDashboard(user, proyectos, links, formPerfil, vistaProyectos, formProyecto, vistaLinks, formLink) {
+export function vistaLogin(error = '') {
 
   return `
-  <h1>Dashboard</h1>
+  <html>
 
-  ${formPerfil}
+  <head>
+    <link rel="stylesheet" href="/style.css">
+  </head>
 
-  <h2>Proyectos</h2>
-  ${vistaProyectos}
-  ${formProyecto}
+  <body>
 
-  <h2>Links</h2>
-  ${vistaLinks}
-  ${formLink}
+  <h1>Login</h1>
+
+  ${error ? `<p class="error">${error}</p>` : ''}
+
+  <form method="POST" action="/login">
+
+    <input
+      name="username"
+      placeholder="Username"
+      required
+    >
+
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+    >
+
+    <button>Entrar</button>
+
+  </form>
+
+  <a href="/register">Crear cuenta</a>
+
+  </body>
+  </html>
+  `;
+}
+
+export function vistaPortfolio(user, proyectos, links, esDueno=false) {
+  return `
+  <html>
+    <head>
+      <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+      <nav>
+        <a href="/">Home</a> | <a href="/all">All Portfolios</a> | 
+        ${esDueno ? '<a href="/dashboard">My Dashboard</a> | <a href="/logout">Logout</a>' : '<a href="/login">Login</a> | <a href="/register">Register</a>'}
+      </nav>
+
+      <div class="container">
+        <div class="card">
+          <img src="${user.photo}" class="profile-photo">
+          <h1>${user.username}</h1>
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>Bio:</strong> ${user.bio}</p>
+        </div>
+
+        <div class="card">
+          <h2>Social Links</h2>
+          <ul>
+            ${links.map(link => `
+              <li><a href="${link.url}">${link.platform}</a></li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Projects</h2>
+          ${proyectos.map(proyecto => `
+            <div class="project">
+              <h3>${proyecto.title}</h3>
+              <p>${proyecto.description}</p>
+              <a href="${proyecto.repo_url}">Repo</a> | <a href="${proyecto.live_url}">Live Demo</a>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <footer>DevPortfolio © 2026</footer>
+    </body>
+  </html>
   `;
 }

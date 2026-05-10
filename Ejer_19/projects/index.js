@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import { crearProyecto, borrarProyecto } from './controller.js';
-import { soloAutenticados } from '../middlewares/auth.js';
+import { auth } from '../middleware/auth.js';
+import {formularioNuevoProyecto,formularioEditarProyecto,guardarProyecto,borrarProyecto} from './controller.js';
 
 const router = Router();
 
-router.post('/project', soloAutenticados, crearProyecto);
-router.get('/project/delete/:id', soloAutenticados, borrarProyecto);
+router.get('/new',auth,formularioNuevoProyecto);
+router.get('/edit/:id',auth,formularioEditarProyecto);
+router.post('/save',auth,guardarProyecto);
+router.get('/delete/:id',auth,borrarProyecto);
 
 export { router };

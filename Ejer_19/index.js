@@ -1,10 +1,13 @@
 // Configuro express y morgan
 import express from 'express';
 import session from 'express-session';
-
-import { router as usersRouter } from './users/index.js';
-import { router as projectsRouter } from './projects/index.js';
-import { router as linksRouter } from './social_links/index.js';
+import morgan from 'morgan';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import {router as userRouter} from './users/index.js';
+import {router as dashboardRouter} from './dashboard/index.js';
+import {router as projectsRouter} from './projects/index.js';
+import {router as socialRouter} from './social/index.js';
 
 const app = express();
 
@@ -21,16 +24,20 @@ app.use(morgan('common', { immediate: true }));
 app.use(express.urlencoded({ extended: false }));
 
 // Configuro sesiones
-app.use(session({
-  secret: 'secreto',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: 'portfolio-secret',
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 // Rutas
-app.use('/', usersRouter);
-app.use('/', projectsRouter);
-app.use('/', linksRouter);
+app.use('/', userRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/projects', projectsRouter);
+app.use('/social', socialRouter);
+
 
 // Redirijo al login
 app.get('/', (req, res) => res.redirect('/login'));

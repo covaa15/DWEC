@@ -1,46 +1,43 @@
 import * as modelo from './model.js';
-import crypto from 'crypto';
-import { formLogin, formRegister, formEditarPerfil } from './forms.js';
-import { vistaPortfolio, vistaDashboard } from './view.js';
-import { conexionBD } from '../db.js';
+import * as modeloProject from '../projects/model.js';
+import * as modeloSocial from '../social/model.js';
+import { vistaRegister, vistaLogin, vistaPortfolio } from './view.js';
 
-import { vistaProyectos } from '../projects/view.js';
-import { formProyecto } from '../projects/forms.js';
+//Funcion que muestra el formulario de Registro
+export function formularioRegister(req, res) {
 
-import { vistaLinks } from '../social_links/view.js';
-import { formLink } from '../social_links/forms.js';
-
-// Funcion que muestra el formulario de login
-export function mostrarLogin(req, res) {
-  res.send(formLogin());
+  res.send(
+    vistaRegister()
+  );
 }
 
-// Fucion que muestra el formulario de registro
-export function mostrarRegister(req, res) {
-  res.send(formRegister());
-}
+// Fucnion que crea usuario
+export async function crearUsuario(req, res) {
 
-/// Funcion que muestra el Usuario Registrado
-export async function registrarUsuario(req, res) {
-
-  const { username, password, email, photo } = req.body;
-
-  await modelo.crearUsuario(username, password, email, photo);
+  await modelo.crearUsuario(req.body);
 
   res.redirect('/login');
 }
 
-// Funcion que muestra el Usuario Logueado
-export async function loginUsuario(req, res) {
+export function formularioLogin(req, res) {
 
-  const { username, password } = req.body;
+  res.send(
+    vistaLogin()
+  );
+}
 
-  const user = await modelo.obtenerUsuario(username);
+//Funcio que muestra el formulario de Login
+export async function login(req, res) {
 
-  const pass = crypto.createHash('md5').update(password).digest('hex');
+  const user = await modelo.login(
+    req.body.username,
+    req.body.password
+  );
 
-  if (!user || user.password !== pass) {
-    return res.send(formLogin('Error login'));
+  if (!user) {
+    return res.send(
+      vistaLogin('Credenciales incorrectas')
+    );
   }
 
   req.session.user = user;
@@ -48,63 +45,56 @@ export async function loginUsuario(req, res) {
   res.redirect('/dashboard');
 }
 
-//FUncion que muestra el Portfolio
-export async function mostrarPortfolio(req, res) {
+// Funcion que cierra sesion
+export function logout(req, res) {
 
-  const user = await modelo.obtenerUsuario(req.params.username);
+  req.session.destroy();
 
-  const [proyectos] = await conexionBD.query(
-    'SELECT * FROM projects WHERE user_id=?',
-    [user.id]
-  );
-
-  const [links] = await conexionBD.query(
-    'SELECT * FROM social_links WHERE user_id=?',
-    [user.id]
-  );
-
-  const esPropietario = req.session?.user?.id === user.id;
-
-  res.send(vistaPortfolio(user, proyectos, links, esPropietario));
+  res.redirect('/login');
 }
 
-// FUncion que muestra el Dashborar
-export async function mostrarDashboard(req, res) {
+export async function portfolio(req, res) {
 
-  const user = req.session.user;
+  const user =
+    await modelo.obtenerUsuario(req.params.username);
 
-  const [proyectos] = await conexionBD.query(
-    'SELECT * FROM projects WHERE user_id=?',
-    [user.id]
+  const proyectos =
+    await modeloProject.obtenerProyectos(user.id);
+
+  const links =
+    await modeloSocial.obtenerLinks(user.id);
+
+  const esPropietario =
+    req.session.user &&
+    req.session.user.id === user.id;
+
+  res.send(
+    vistaPortfolio(user, proyectos, links, esPropietario)
   );
-
-  const [links] = await conexionBD.query(
-    'SELECT * FROM social_links WHERE user_id=?',
-    [user.id]
-  );
-
-  res.send(vistaDashboard(
-    user,
-    proyectos,
-    links,
-    formEditarPerfil(user),
-    vistaProyectos(proyectos),
-    formProyecto(),
-    vistaLinks(links),
-    formLink()
-  ));
 }
+export async function listarUsuarios(req, res) {
+  const usuarios = await modelo.obtenerTodosLosUsuarios();
 
-// Funcion que actualiza el perfil
-export async function actualizarPerfil(req, res) {
-
-  const { bio, email, photo } = req.body;
-
-  await modelo.actualizarPerfil(req.session.user.id, bio, email, photo);
-
-  req.session.user.bio = bio;
-  req.session.user.email = email;
-  req.session.user.photo = photo;
-
-  res.redirect('/dashboard');
+  res.send(`
+  <html>
+    <head><link rel="stylesheet" href="/style.css"></head>
+    <body>
+      <nav>
+        <a href="/">Home</a> | <a href="/all">All Portfolios</a> | 
+        ${req.session.user ? '<a href="/dashboard">My Dashboard</a>' : '<a href="/login">Login</a>'}
+      </nav>
+      <div class="container">
+        <h1>Todos los Portafolios</h1>
+        <div class="card">
+          <ul>
+            ${usuarios.map(u => `
+              <li><a href="/portfolio/${u.username}" style="font-size: 18px;">${u.username}</a></li>
+            `).join('')}
+          </ul>
+        </div>
+      </div>
+      <footer>DevPortfolio © 2026</footer>
+    </body>
+  </html>
+  `);
 }
