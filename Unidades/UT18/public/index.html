@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 Web Uploader v2</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #e9ecef; 
+            margin: 0; 
+        }
+        .container { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 450px; 
+        }
+        h1 { 
+            font-size: 1.75rem; 
+            color: #212529; 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+            font-weight: 600;
+        }
+        .upload-area {
+            border: 2px dashed #dee2e6;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #007bff;
+        }
+        input[type="file"] { 
+            width: 100%; 
+            margin-bottom: 1rem; 
+        }
+        button { 
+            width: 100%; 
+            padding: 0.8rem; 
+            background-color: #0d6efd; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        button:hover { 
+            background-color: #0b5ed7; 
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        #status { 
+            margin-top: 1.5rem; 
+            text-align: center; 
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { 
+            background-color: #d1e7dd;
+            color: #0f5132; 
+            border: 1px solid #badbcc;
+        }
+        .error { 
+            background-color: #f8d7da;
+            color: #842029; 
+            border: 1px solid #f5c2c7;
+        }
+        .loading {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>S3 Uploader Pro</h1>
+        <div class="upload-area">
+            <form id="uploadForm">
+                <input type="file" name="file" id="fileInput" required>
+                <button type="submit" id="submitBtn">Subir a la Nube</button>
+            </form>
+        </div>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const statusDiv = document.getElementById('status');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            
+            // Limpiar estado previo
+            statusDiv.innerHTML = 'Procesando subida...';
+            statusDiv.className = 'loading';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            try {
+                const res = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    statusDiv.className = 'success';
+                    statusDiv.innerHTML = `<strong>¡Archivo subido!</strong><br><small>${data.fileName}</small>`;
+                    form.reset();
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.innerHTML = `Error: ${data.error}`;
+                }
+            } catch (err) {
+                statusDiv.className = 'error';
+                statusDiv.innerHTML = 'Error de conexión con el servidor';
+            } finally {
+                submitBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

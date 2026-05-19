@@ -1,0 +1,20 @@
+{
+  "name": "s3-uploader",
+  "version": "1.0.0",
+  "description": "A simple S3 file uploader",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/lib-storage": "^3.0.0",
+    "@aws-sdk/s3-request-presigner": "^3.0.0",
+    "aws4": "^1.12.0",
+    "dotenv": "^16.0.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "uuid": "^13.0.0"
+  }
+}
