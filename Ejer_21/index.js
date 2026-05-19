@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
 import { conexionBD } from './db.js';
@@ -21,7 +22,7 @@ const upload = multer({
     valido ? cb(null, true) : cb(new Error('Solo se permiten imagenes'));
   }
 });
-app.use(express.static(`${dirname(fileURLToPath(import.meta.url))}/public`));
+app.use(express.static(`${path.dirname(fileURLToPath(import.meta.url))}/public`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
