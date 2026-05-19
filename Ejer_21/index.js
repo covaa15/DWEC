@@ -21,10 +21,10 @@ const upload = multer({
     valido ? cb(null, true) : cb(new Error('Solo se permiten imagenes'));
   }
 });
-
+app.use(express.static(`${dirname(fileURLToPath(import.meta.url))}/public`));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+
 
 // Obtengo la imagen del bucket y la muestri
 app.get('/imagen/:nombre', async (req, res) => {
